@@ -23,6 +23,122 @@ class ArraysAndStringsTasks {
     }
 }
 
+/* 1.1 Is there symbol duplicates in the string
+ * Complexity: O(n).
+ */
+extension ArraysAndStringsTasks {
+    func hasDuplicates(in string: String) -> Bool {
+        var symbolsFreqs: [Character: Int] = [:]
+        for symbol in string {
+            if symbolsFreqs[symbol] != nil {
+                return true
+            } else {
+                symbolsFreqs[symbol] = 1
+            }
+        }
+        return false
+    }
+}
+
+/* 1.2 Is string rearrangement of another string
+ * Complexity: O(n+m).
+ */
+extension ArraysAndStringsTasks {
+    func isRearrangement(string1: String, string2: String) -> Bool {
+        return isHashTablesEqual(hashTableFromString(string1) , hashTableFromString(string2))
+    }
+    
+    func hashTableFromString(_ string: String) -> [Character: Int] {
+        var stringTable: [Character: Int] = [:]
+        for symbol in string {
+            if let counter = stringTable[symbol] {
+                stringTable[symbol] = counter + 1
+            } else {
+                stringTable[symbol] = 1
+            }
+        }
+        return stringTable
+    }
+    
+    func isHashTablesEqual(_ hash1: [Character: Int], _ hash2: [Character: Int]) -> Bool {
+        if hash1.keys.count != hash2.keys.count {
+            return false
+        }
+        
+        for key in hash1.keys {
+            if hash1[key] != hash2[key] {
+                return false
+            }
+        }
+        return true
+    }
+}
+
+/* 1.3 Replace spaces in string to %20
+ * Complexity: O(n). Appending to string in Swift - O(1) in average
+ */
+extension ArraysAndStringsTasks {
+    func stringWithReplacedSpaces(from string: String) -> String {
+        var res: String = ""
+        let charToReplace: Character = " "
+        for symbol in string {
+            if symbol == charToReplace {
+                res.append("%20")
+            } else {
+                res.append(symbol)
+            }
+        }
+        return res
+    }
+}
+
+/* 1.4 Is string a palindrom
+ * Complexity: O(n).
+ */
+extension ArraysAndStringsTasks {
+    func isPalindrom(_ string: String) -> Bool {
+        var symbolsNumbers: [Character: Int] = [:]
+        for symbol in string {
+            // Reset number of symbols if they occures second time
+            if symbolsNumbers[symbol] != nil {
+                symbolsNumbers[symbol] = nil
+            } else {
+                symbolsNumbers[symbol] = 1
+            }
+        }
+        
+        // String can be a palindrom if only one symbol or no symbol occurs once
+        return symbolsNumbers.count <= 1
+    }
+}
+
+/* 1.5 Is distance between strings is 1
+ * Complexity: O(n). Not taking into account conversion string -> array
+ */
+extension ArraysAndStringsTasks {
+    func isOneDistance(from string1: String, to string2: String) -> Bool {
+        let minIndex = string1.count > string2.count ? string2.count : string1.count
+        let stringArray1 = getArray(from: string1)
+        let stringArray2 = getArray(from: string2)
+        var changes = 0
+        for i in (0..<minIndex) {
+            if stringArray1[i] != stringArray2[i]  {
+                changes += 1
+            }
+        }
+        changes += abs(string1.count - string2.count)
+        return changes == 1
+    }
+    
+    func getArray(from string: String) -> [Character] {
+        var res: [Character] = []
+        for symbol in string {
+            res.append(symbol)
+        }
+        return res
+    }
+}
+
 /* 1.6 Simplest strings compression
  * Complexity: O(n). Appending to string in Swift - O(1) in average
  */

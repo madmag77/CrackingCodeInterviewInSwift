@@ -1,5 +1,5 @@
 //
-//  ArraysAndStringsTests.swift
+//  ArraysAndStrings16_Tests.swift
 //  CrackingInterviewTests
 //
 //  Created by Artem Goncharov on 01/12/2017.
