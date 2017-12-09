@@ -242,9 +242,11 @@ extension ArraysAndStringsTasks {
         guard s1.count == s2.count else { return false }
         guard s1 != s2 else { return true }
         
-        for index in (1..<s1.count) {
-            if isSubstring(String(s1[s1.startIndex...s1.index(s1.startIndex, offsetBy: index)]), of: s2) &&
-                isSubstring(String(s1[s1.index(s1.startIndex, offsetBy: index)...s1.endIndex]), of: s2) {
+        for index in (0..<s1.count) {
+            let leftString = String(s1[s1.startIndex...s1.index(s1.startIndex, offsetBy: index)])
+            let rightString = String(s1[s1.index(s1.startIndex, offsetBy: index + 1)..<s1.endIndex])
+            if isSubstring(leftString, of: s2) &&
+                isSubstring(rightString, of: s2) {
                 return true
             }
         }
