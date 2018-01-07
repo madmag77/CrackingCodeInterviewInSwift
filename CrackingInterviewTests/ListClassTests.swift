@@ -351,5 +351,53 @@ class ListClassTests: XCTestCase {
         XCTAssert(list.getNode(at: 5) === list.tail)
         XCTAssert(list.getNode(at: 0) === list.root)
     }
+    
+    func testEqualLists() {
+        // Given
+        let list1 = ListImpl(with: [2, 6, 8, 0, 1, 4])
+        let list2 = ListImpl(with: [2, 6, 8, 0, 1, 4])
+        
+        // When
+        let equal = list1 == list2
+        
+        // Then
+        XCTAssertTrue(equal)
+    }
+    
+    func testEqualEmptyLists() {
+        // Given
+        let list1 = ListImpl<Int>()
+        let list2 = ListImpl<Int>()
+        
+        // When
+        let equal = list1 == list2
+        
+        // Then
+        XCTAssertTrue(equal)
+    }
+    
+    func testNonEqualLists() {
+        // Given
+        let list1 = ListImpl(with: [2, 6, 8, 0, 1, 9])
+        let list2 = ListImpl(with: [2, 6, 8, 0, 1, 4])
+        
+        // When
+        let equal = list1 == list2
+        
+        // Then
+        XCTAssertFalse(equal)
+    }
+    
+    func testNonEqualDifferentSizesLists() {
+        // Given
+        let list1 = ListImpl(with: [2, 6, 8, 0, 1])
+        let list2 = ListImpl(with: [2, 6, 8, 0, 1, 4])
+        
+        // When
+        let equal = list1 == list2
+        
+        // Then
+        XCTAssertFalse(equal)
+    }
 }
 

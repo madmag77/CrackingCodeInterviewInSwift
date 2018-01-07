@@ -17,13 +17,17 @@ class ListsTasks {
  * Complexity: O(n).
  */
 extension ListsTasks {
-    func removeDuplicates(in list: OneLinkListNode<Int>) -> OneLinkListNode<Int> {
-        var listSet: Set<Int> = [list.data]
-        var currentNode: OneLinkListNode<Int> = list
+    func removeDuplicates(in list: ListImpl<Int>) -> ListImpl<Int> {
+        guard let root = list.root else {
+            return list
+        }
+        
+        var listSet: Set<Int> = [root.data]
+        var currentNode: OneLinkListNode<Int> = root
         while currentNode.link != nil {
             if let childNode = currentNode.link {
                 if listSet.contains(childNode.data) {
-                    let _ = OneLinkList.deleteNode(node: childNode, in: list)
+                    let _ = list.removeNode(previousNode: currentNode)
                 } else {
                     currentNode = childNode
                 }

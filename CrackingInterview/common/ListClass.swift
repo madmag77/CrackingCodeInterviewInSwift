@@ -11,7 +11,7 @@ import Foundation
 /* Implementation of one link list like a convenient class */
 
 protocol List: class {
-    associatedtype T
+    associatedtype T: Equatable
     var root: OneLinkListNode<T>? {get}
     var tail: OneLinkListNode<T>? {get}
 
@@ -35,6 +35,9 @@ protocol List: class {
     // complexity O(n)
     func removeNode(at index: Int)
     
+    // complexity O(1)
+    func removeNode(previousNode: OneLinkListNode<T>)
+
     // complexity O(n)
     func swapNode(from indexFrom: Int, to indexTo: Int)
 
@@ -44,7 +47,7 @@ protocol List: class {
     func iterateThroughList(with closure: (OneLinkListNode<T>) -> Bool)
 }
 
-class ListImpl<T>: List {
+class ListImpl<T: Equatable>: List, Equatable {
     var root: OneLinkListNode<T>?
     var tail: OneLinkListNode<T>?
     
@@ -130,7 +133,15 @@ class ListImpl<T>: List {
             tail = previousNode
         }
     }
-    
+
+    func removeNode(previousNode: OneLinkListNode<T>) {
+        if previousNode.link === tail {
+            tail = previousNode
+        }
+        
+        previousNode.link = previousNode.link?.link
+    }
+
     func count() -> Int {
         var counter: Int = 0
         
@@ -229,6 +240,24 @@ class ListImpl<T>: List {
         tempFromLink = previousNodeFrom?.link?.link
         previousNodeTo?.link?.link = tempFromLink
         previousNodeFrom?.link?.link = tempToLink
+    }
+
+    static func ==(lhs: ListImpl<T>, rhs: ListImpl<T>) -> Bool {
+        var currentLNode: OneLinkListNode<T>? = lhs.root
+        var currentRNode: OneLinkListNode<T>? = rhs.root
+
+        while currentLNode != nil || currentRNode != nil {
+            if let leftCurrentNode = currentLNode,
+                let rightCurrentNode = currentRNode,
+                leftCurrentNode.data == rightCurrentNode.data {
+                
+                currentLNode = currentLNode?.link
+                currentRNode = currentRNode?.link
+            } else {
+                return false
+            }
+        }
+        return true
     }
 
     func sortInPlace() {
