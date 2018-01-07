@@ -24,49 +24,35 @@ class Lists21_Tests: XCTestCase {
 
     func testListWithoutDuplicates() {
         // Given
-        let list = OneLinkListNode<Int>(0)
-        OneLinkList.addNode(OneLinkListNode<Int>(1), to: list)
-        OneLinkList.addNode(OneLinkListNode<Int>(2), to: list)
-        OneLinkList.addNode(OneLinkListNode<Int>(3), to: list)
+        let list = ListImpl(with: [1, 2, 3])
         
         // When
         let listWithoutDuplicates = tasks.removeDuplicates(in: list)
         
         // Then
-        XCTAssertEqual(OneLinkList.nodeCount(of: list), OneLinkList.nodeCount(of: listWithoutDuplicates))
+        XCTAssertEqual(list, listWithoutDuplicates)
     }
     
     func testListWithDuplicates() {
         // Given
-        let list = OneLinkListNode<Int>(0)
-        OneLinkList.addNode(OneLinkListNode<Int>(1), to: list)
-        OneLinkList.addNode(OneLinkListNode<Int>(0), to: list)
-        OneLinkList.addNode(OneLinkListNode<Int>(3), to: list)
+        let list = ListImpl(with: [1, 2, 3, 2])
         
         // When
         let listWithoutDuplicates = tasks.removeDuplicates(in: list)
         
         // Then
-        XCTAssertEqual(OneLinkList.nodeCount(of: listWithoutDuplicates), 3)
-        XCTAssertEqual(OneLinkList.getNode(index: 1, in: listWithoutDuplicates)?.data, 1)
-        XCTAssertEqual(OneLinkList.getNode(index: 2, in: listWithoutDuplicates)?.data, 3)
+        XCTAssertEqual(listWithoutDuplicates, ListImpl(with: [1, 2, 3]))
     }
     
-    func testListWithDuplicatesNonRoot() {
+    func testListWithAllDuplicates() {
         // Given
-        let list = OneLinkListNode<Int>(0)
-        OneLinkList.addNode(OneLinkListNode<Int>(1), to: list)
-        OneLinkList.addNode(OneLinkListNode<Int>(1), to: list)
-        OneLinkList.addNode(OneLinkListNode<Int>(3), to: list)
+        let list = ListImpl(with: [1, 1, 1, 1])
         
         // When
         let listWithoutDuplicates = tasks.removeDuplicates(in: list)
         
         // Then
-        XCTAssertEqual(OneLinkList.nodeCount(of: listWithoutDuplicates), 3)
-        XCTAssertEqual(OneLinkList.getNode(index: 1, in: listWithoutDuplicates)?.data, 1)
-        XCTAssertEqual(OneLinkList.getNode(index: 2, in: listWithoutDuplicates)?.data, 3)
+        XCTAssertEqual(listWithoutDuplicates, ListImpl(with: [1]))
     }
-    
  }
 
