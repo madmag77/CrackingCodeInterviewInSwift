@@ -158,15 +158,20 @@ class ListClassTests: XCTestCase {
         list.addNodeBeforeRoot(OneLinkListNode(rootName))
         list.addNodeAfterTail(OneLinkListNode(childName))
         list.addNodeAfterTail(OneLinkListNode(subChildName))
-
+        
         // When
         var counter = 0
+        var thirdData = ""
         list.iterateThroughList { (node) -> Bool in
+            if  counter == 2 {
+                thirdData = node.data
+            }
             counter += 1
             return false
         }
         
         // Then
+        XCTAssertEqual(thirdData, subChildName)
         XCTAssertEqual(counter, 3)
     }
     
@@ -398,6 +403,28 @@ class ListClassTests: XCTestCase {
         
         // Then
         XCTAssertFalse(equal)
+    }
+    
+    func testSortInPlace() {
+        // Given
+        let list = ListImpl(with: [2, 6, 8, 0, 1, 4])
+        
+        // When
+        list.sortInPlace()
+        
+        // Then
+        XCTAssertEqual(list,  ListImpl(with: [0, 1, 2, 4, 6, 8]))
+    }
+    
+    func testSortInPlaceWithMinRoot() {
+        // Given
+        let list = ListImpl(with: [0, 6, 8, 2, 1, 4])
+        
+        // When
+        list.sortInPlace()
+        
+        // Then
+        XCTAssertEqual(list,  ListImpl(with: [0, 1, 2, 4, 6, 8]))
     }
 }
 

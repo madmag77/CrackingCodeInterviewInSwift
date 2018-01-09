@@ -11,7 +11,7 @@ import Foundation
 /* Implementation of one link list like a convenient class */
 
 protocol List: class {
-    associatedtype T: Equatable
+    associatedtype T: Equatable, Comparable
     var root: OneLinkListNode<T>? {get}
     var tail: OneLinkListNode<T>? {get}
 
@@ -47,7 +47,7 @@ protocol List: class {
     func iterateThroughList(with closure: (OneLinkListNode<T>) -> Bool)
 }
 
-class ListImpl<T: Equatable>: List, Equatable {
+class ListImpl<T: Equatable & Comparable>: List {
     var root: OneLinkListNode<T>?
     var tail: OneLinkListNode<T>?
     
@@ -158,25 +158,29 @@ class ListImpl<T: Equatable>: List, Equatable {
             return
         }
         
-        var currentNode: OneLinkListNode<T> = root
+        var currentNode: OneLinkListNode<T>? = root
         
-        if closure(currentNode) {
-            return
-        }
-        
-        while currentNode.link != nil {
-            guard let childNode = currentNode.link else {
-                fatalError()
-            }
-            
-            if closure(childNode) {
+        while currentNode != nil {
+            if let currentNode = currentNode, closure(currentNode) {
                 return
             }
             
-            currentNode = childNode
+            currentNode = currentNode?.link
         }
     }
-    
+
+    func iterateThroughList(from node: OneLinkListNode<T>, with closure: (OneLinkListNode<T>) -> Bool) {
+        var currentNode: OneLinkListNode<T>? = node
+        
+        while currentNode != nil {
+            if let currentNode = currentNode, closure(currentNode) {
+                return
+            }
+            
+            currentNode = currentNode?.link
+        }
+    }
+
     func swapNode(from indexFrom: Int, to indexTo: Int) {
         guard indexFrom != indexTo else {
             return
@@ -214,10 +218,10 @@ class ListImpl<T: Equatable>: List, Equatable {
         }
     }
  
-    func swapNodeToRoot(_ node: OneLinkListNode<T>?) {
+    func swapNodeToRoot(_ previousNode: OneLinkListNode<T>?) {
         let tempRoot: OneLinkListNode<T> = OneLinkListNode(root!.data)
         tempRoot.link = root
-        swapNodes(previousNodeFrom: tempRoot, previousNodeTo: node)
+        swapNodes(previousNodeFrom: tempRoot, previousNodeTo: previousNode)
         root = tempRoot.link
     }
     
@@ -241,11 +245,59 @@ class ListImpl<T: Equatable>: List, Equatable {
         previousNodeTo?.link?.link = tempFromLink
         previousNodeFrom?.link?.link = tempToLink
     }
+}
 
+extension ListImpl {
+    func sortInPlace() {
+        guard let root = root else {
+            return
+        }
+        
+        var currentNode = root
+        var currentPreviousNode = root
+        while currentNode !== tail {
+            var minVal = currentNode.data
+            var previousMaxNode = currentNode
+            var previousNode = currentNode
+            iterateThroughList(from: currentNode, with: { (node) -> Bool in
+                if node.data < minVal {
+                    previousMaxNode = previousNode
+                    minVal = node.data
+                }
+                previousNode = node
+                return false
+            })
+            
+            if currentNode === root {
+                if minVal != currentNode.data {
+                    swapNodeToRoot(previousMaxNode)
+                }
+                if let nextNode = self.root?.link,
+                     let nextPreviousNode = self.root {
+                    currentPreviousNode = nextPreviousNode
+                    currentNode = nextNode
+                }
+            } else {
+                if minVal != currentNode.data {
+                    swapNodes(previousNodeFrom: currentPreviousNode, previousNodeTo: previousMaxNode)
+                }
+                
+                if let nextNode = currentPreviousNode.link?.link,
+                    let nextPreviousNode = currentPreviousNode.link {
+                    currentPreviousNode = nextPreviousNode
+                    currentNode = nextNode
+                }
+            }
+            
+        }
+    }
+}
+
+extension ListImpl: Equatable {
     static func ==(lhs: ListImpl<T>, rhs: ListImpl<T>) -> Bool {
         var currentLNode: OneLinkListNode<T>? = lhs.root
         var currentRNode: OneLinkListNode<T>? = rhs.root
-
+        
         while currentLNode != nil || currentRNode != nil {
             if let leftCurrentNode = currentLNode,
                 let rightCurrentNode = currentRNode,
@@ -259,9 +311,5 @@ class ListImpl<T: Equatable>: List, Equatable {
         }
         return true
     }
-
-    func sortInPlace() {
-        
-    }
-
 }
+
