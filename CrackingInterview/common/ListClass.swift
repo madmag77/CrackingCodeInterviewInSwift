@@ -11,7 +11,7 @@ import Foundation
 /* Implementation of one link list like a convenient class */
 
 protocol List: class {
-    associatedtype T: Equatable, Comparable
+    associatedtype T: Comparable
     var root: OneLinkListNode<T>? {get}
     var tail: OneLinkListNode<T>? {get}
 
@@ -44,6 +44,9 @@ protocol List: class {
     // complexity O(n)
     func count() -> Int
 
+    // Buble sort complexity O(n*n)
+    func sortInPlace()
+    
     func iterateThroughList(with closure: (OneLinkListNode<T>) -> Bool)
 }
 
@@ -222,7 +225,6 @@ class ListImpl<T: Equatable & Comparable>: List {
         let tempRoot: OneLinkListNode<T> = OneLinkListNode(root!.data)
         tempRoot.link = root
         swapNodes(previousNodeFrom: tempRoot, previousNodeTo: previousNode)
-        root = tempRoot.link
     }
     
     func swapNodes(previousNodeFrom: OneLinkListNode<T>?, previousNodeTo: OneLinkListNode<T>?) {
@@ -244,21 +246,29 @@ class ListImpl<T: Equatable & Comparable>: List {
         tempFromLink = previousNodeFrom?.link?.link
         previousNodeTo?.link?.link = tempFromLink
         previousNodeFrom?.link?.link = tempToLink
+        
+        if previousNodeTo?.link === root {
+            root = previousNodeFrom?.link
+        }
     }
 }
 
 extension ListImpl {
+    
     func sortInPlace() {
         guard let root = root else {
             return
         }
         
-        var currentNode = root
-        var currentPreviousNode = root
-        while currentNode !== tail {
+        let tempRoot: OneLinkListNode<T> = OneLinkListNode(root.data)
+        tempRoot.link = root
+        
+        var currentPreviousNode = tempRoot
+        while currentPreviousNode.link !== tail,
+            let currentNode = currentPreviousNode.link {
             var minVal = currentNode.data
-            var previousMaxNode = currentNode
-            var previousNode = currentNode
+            var previousMaxNode = currentPreviousNode
+            var previousNode = currentPreviousNode
             iterateThroughList(from: currentNode, with: { (node) -> Bool in
                 if node.data < minVal {
                     previousMaxNode = previousNode
@@ -268,27 +278,13 @@ extension ListImpl {
                 return false
             })
             
-            if currentNode === root {
-                if minVal != currentNode.data {
-                    swapNodeToRoot(previousMaxNode)
-                }
-                if let nextNode = self.root?.link,
-                     let nextPreviousNode = self.root {
-                    currentPreviousNode = nextPreviousNode
-                    currentNode = nextNode
-                }
-            } else {
-                if minVal != currentNode.data {
-                    swapNodes(previousNodeFrom: currentPreviousNode, previousNodeTo: previousMaxNode)
-                }
-                
-                if let nextNode = currentPreviousNode.link?.link,
-                    let nextPreviousNode = currentPreviousNode.link {
-                    currentPreviousNode = nextPreviousNode
-                    currentNode = nextNode
-                }
+            if minVal != currentNode.data {
+                swapNodes(previousNodeFrom: currentPreviousNode, previousNodeTo: previousMaxNode)
             }
             
+            if let nextNode = currentPreviousNode.link {
+                currentPreviousNode = nextNode
+            }
         }
     }
 }
@@ -313,3 +309,18 @@ extension ListImpl: Equatable {
     }
 }
 
+extension ListImpl: CustomDebugStringConvertible {
+    var debugDescription: String {
+        var stringRepresentation: String = ""
+        iterateThroughList { (node) -> Bool in
+            if stringRepresentation.count > 0 {
+                 stringRepresentation.append(", ")
+            }
+            stringRepresentation.append(String(describing: node.data))
+            return false
+        }
+        return stringRepresentation
+    }
+    
+    
+}
