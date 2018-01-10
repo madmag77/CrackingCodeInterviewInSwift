@@ -255,6 +255,25 @@ class ListImpl<T: Equatable & Comparable>: List {
 
 extension ListImpl {
     
+    private func searchMinNodeFrom(previousNode: OneLinkListNode<T>) -> OneLinkListNode<T> {
+        guard let currentNode = previousNode.link else {
+            fatalError()
+        }
+        
+        var minVal = currentNode.data
+        var previousMinNode = previousNode
+        var previousFromNode = previousNode
+        iterateThroughList(from: currentNode, with: { (node) -> Bool in
+            if node.data < minVal {
+                previousMinNode = previousFromNode
+                minVal = node.data
+            }
+            previousFromNode = node
+            return false
+        })
+        return previousMinNode
+    }
+
     func sortInPlace() {
         guard let root = root else {
             return
@@ -264,22 +283,12 @@ extension ListImpl {
         tempRoot.link = root
         
         var currentPreviousNode = tempRoot
-        while currentPreviousNode.link !== tail,
-            let currentNode = currentPreviousNode.link {
-            var minVal = currentNode.data
-            var previousMaxNode = currentPreviousNode
-            var previousNode = currentPreviousNode
-            iterateThroughList(from: currentNode, with: { (node) -> Bool in
-                if node.data < minVal {
-                    previousMaxNode = previousNode
-                    minVal = node.data
-                }
-                previousNode = node
-                return false
-            })
+        while currentPreviousNode.link !== tail {
             
-            if minVal != currentNode.data {
-                swapNodes(previousNodeFrom: currentPreviousNode, previousNodeTo: previousMaxNode)
+            let previousMinNode = searchMinNodeFrom(previousNode: currentPreviousNode)
+            
+            if previousMinNode !== currentPreviousNode {
+                swapNodes(previousNodeFrom: currentPreviousNode, previousNodeTo: previousMinNode)
             }
             
             if let nextNode = currentPreviousNode.link {
