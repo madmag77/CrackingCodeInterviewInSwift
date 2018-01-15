@@ -44,10 +44,14 @@ protocol List: class {
     // complexity O(n)
     func count() -> Int
 
-    // Buble sort complexity O(n*n)
-    func sortInPlace()
+    // Selection sort complexity O(n*n) in all cases
+    func sortInPlace_Selection()
     
+    // Insertion sort complexity O(n*n) in all cases for one link list
+    func sortInPlace_Insertion()
+
     func iterateThroughList(with closure: (OneLinkListNode<T>) -> Bool)
+    func iterateThroughListOfPrevious(with closure: (_ node: OneLinkListNode<T>, _ previousNode: OneLinkListNode<T>) -> Bool)
 }
 
 class ListImpl<T: Equatable & Comparable>: List {
@@ -101,6 +105,10 @@ class ListImpl<T: Equatable & Comparable>: List {
         if after === tail {
             tail = node
         }
+        
+        if node.link === root {
+            root = node
+        }
     }
     
     func getNode(at index: Int) -> OneLinkListNode<T>? {
@@ -142,6 +150,10 @@ class ListImpl<T: Equatable & Comparable>: List {
             tail = previousNode
         }
         
+        if previousNode.link === root {
+            root = previousNode.link?.link
+        }
+
         previousNode.link = previousNode.link?.link
     }
 
@@ -166,13 +178,37 @@ class ListImpl<T: Equatable & Comparable>: List {
         while currentNode != nil {
             if let currentNode = currentNode, closure(currentNode) {
                 return
-            }
+            } 
             
             currentNode = currentNode?.link
         }
     }
 
-    func iterateThroughList(from node: OneLinkListNode<T>, with closure: (OneLinkListNode<T>) -> Bool) {
+    func iterateThroughListOfPrevious(with closure: (_ node: OneLinkListNode<T>, _ previousNode: OneLinkListNode<T>) -> Bool) {
+        guard let root = root else {
+            return
+        }
+        
+        let tempRoot: OneLinkListNode<T> = OneLinkListNode(root.data)
+        tempRoot.link = root
+
+        var currentNode: OneLinkListNode<T>? = root
+        var currentPreviousNode: OneLinkListNode<T>? = tempRoot
+
+        while currentNode != nil {
+            if let currentNode = currentNode,
+                let currentPreviousNode = currentPreviousNode,
+                closure(currentNode, currentPreviousNode) {
+                return
+            }
+            
+            currentPreviousNode = currentNode
+            currentNode = currentNode?.link
+        }
+    }
+
+    func iterateThroughList(from node: OneLinkListNode<T>,
+                            with closure: (OneLinkListNode<T>) -> Bool) {
         var currentNode: OneLinkListNode<T>? = node
         
         while currentNode != nil {
@@ -183,6 +219,27 @@ class ListImpl<T: Equatable & Comparable>: List {
             currentNode = currentNode?.link
         }
     }
+    
+    func iterateThroughListOfPrevious(from previousNode: OneLinkListNode<T>,
+                                      with closure: (_ node: OneLinkListNode<T>, _ previousNode: OneLinkListNode<T>) -> Bool) {
+        
+        var currentNode: OneLinkListNode<T>? = previousNode.link
+        var currentPreviousNode: OneLinkListNode<T>? = previousNode
+        
+        while currentNode != nil {
+            if let currentNode = currentNode,
+                let currentPreviousNode = currentPreviousNode,
+                closure(currentNode, currentPreviousNode) {
+                return
+            } else {
+                fatalError()
+            }
+            
+            currentPreviousNode = currentNode
+            currentNode = currentNode?.link
+        }
+    }
+
 
     func swapNode(from indexFrom: Int, to indexTo: Int) {
         guard indexFrom != indexTo else {
@@ -274,7 +331,7 @@ extension ListImpl {
         return previousMinNode
     }
 
-    func sortInPlace() {
+    func sortInPlace_Selection() {
         guard let root = root else {
             return
         }
@@ -296,6 +353,54 @@ extension ListImpl {
             }
         }
     }
+
+    private func searchNodeToInsertAfter(nodePreviousToCompareTo: OneLinkListNode<T>) -> OneLinkListNode<T> {
+        guard let currentNode = nodePreviousToCompareTo.link else {
+            fatalError()
+        }
+        
+        var previousMinNode = nodePreviousToCompareTo
+        iterateThroughListOfPrevious { (node, previousNode) -> Bool in
+            if node === currentNode {
+                return true
+            }
+            
+            if currentNode.data < node.data {
+                previousMinNode = previousNode
+                return true
+            }
+            
+            return false
+        }
+        return previousMinNode
+    }
+
+    func sortInPlace_Insertion() {
+        guard let root = root else {
+            return
+        }
+        
+        let tempRoot: OneLinkListNode<T> = OneLinkListNode(root.data)
+        tempRoot.link = root
+        
+        var currentPreviousNode = tempRoot
+        while currentPreviousNode.link != nil {
+            
+            let previousMinNode = searchNodeToInsertAfter(nodePreviousToCompareTo: currentPreviousNode)
+            
+            if previousMinNode !== currentPreviousNode {
+                if let tempNode = currentPreviousNode.link {
+                    removeNode(previousNode: currentPreviousNode)
+                    insertNode(tempNode, after: previousMinNode)
+                }
+            } else {
+                if let nextNode = currentPreviousNode.link {
+                    currentPreviousNode = nextNode
+                }
+            }
+        }
+    }
+
 }
 
 extension ListImpl: Equatable {

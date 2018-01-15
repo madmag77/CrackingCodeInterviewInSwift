@@ -197,6 +197,36 @@ class ListClassTests: XCTestCase {
         XCTAssertEqual(counter, 1)
     }
     
+    func testPreviousIterator() {
+        // Given
+        let list = ListImpl<String>()
+        let rootName = "root"
+        let childName = "child"
+        let subChildName = "subChildName"
+        
+        list.addNodeBeforeRoot(OneLinkListNode(rootName))
+        list.addNodeAfterTail(OneLinkListNode(childName))
+        list.addNodeAfterTail(OneLinkListNode(subChildName))
+        
+        // When
+        var counter = 0
+        var thirdData = ""
+        var thirdDataFromPrevious = ""
+        list.iterateThroughListOfPrevious { (node, previousNode) -> Bool in
+            if  counter == 2 {
+                thirdDataFromPrevious = previousNode.link?.data ?? ""
+                thirdData = node.data
+            }
+            counter += 1
+            return false
+        }
+        
+        // Then
+        XCTAssertEqual(thirdDataFromPrevious, subChildName)
+        XCTAssertEqual(thirdData, subChildName)
+        XCTAssertEqual(counter, 3)
+    }
+
     func testRemoveNode() {
         // Given
         let array: Array<Int> = [2, 6, 8, 0, 1, 4]
@@ -405,26 +435,34 @@ class ListClassTests: XCTestCase {
         XCTAssertFalse(equal)
     }
     
-    func testSortInPlace() {
-        // Given
-        let list = ListImpl(with: [2, 6, 8, 0, 1, 4])
-        
-        // When
-        list.sortInPlace()
-        
-        // Then
-        XCTAssertEqual(list,  ListImpl(with: [0, 1, 2, 4, 6, 8]))
+    func createListFromArrayAndSelectionSort(_ array: Array<Int>) -> ListImpl<Int> {
+        let list = ListImpl(with: array)
+        list.sortInPlace_Selection()
+        return list
     }
     
-    func testSortInPlaceWithMinRoot() {
+    func createListFromArrayAndInsertionSort(_ array: Array<Int>) -> ListImpl<Int> {
+        let list = ListImpl(with: array)
+        list.sortInPlace_Insertion()
+        return list
+    }
+
+    func testSortSimple() {
         // Given
-        let list = ListImpl(with: [0, 6, 8, 2, 1, 4])
-        
-        // When
-        list.sortInPlace()
-        
-        // Then
-        XCTAssertEqual(list,  ListImpl(with: [0, 1, 2, 4, 6, 8]))
+        let unsortedArray = [2, 6, 8, 0, 1, 4]
+        let sortedArray = [0, 1, 2, 4, 6, 8]
+
+        XCTAssertEqual(createListFromArrayAndSelectionSort(unsortedArray), ListImpl(with: sortedArray))
+        XCTAssertEqual(createListFromArrayAndInsertionSort(unsortedArray), ListImpl(with: sortedArray))
+    }
+    
+    func testSortInPlaceWithMinRoot_Selection() {
+        // Given
+        let unsortedArray = [0, 6, 8, 2, 1, 4]
+        let sortedArray = [0, 1, 2, 4, 6, 8]
+
+        XCTAssertEqual(createListFromArrayAndSelectionSort(unsortedArray), ListImpl(with: sortedArray))
+        XCTAssertEqual(createListFromArrayAndInsertionSort(unsortedArray), ListImpl(with: sortedArray))
     }
 }
 
