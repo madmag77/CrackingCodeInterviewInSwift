@@ -27,10 +27,10 @@ class Lists21_Tests: XCTestCase {
         let list = ListImpl(with: [1, 2, 3])
         
         // When
-        let listWithoutDuplicates = tasks.removeDuplicates(in: list)
+        tasks.removeDuplicatesInPlace(in: list)
         
         // Then
-        XCTAssertEqual(list, listWithoutDuplicates)
+        XCTAssertEqual(list, ListImpl(with: [1, 2, 3]))
     }
     
     func testListWithDuplicates() {
@@ -38,10 +38,10 @@ class Lists21_Tests: XCTestCase {
         let list = ListImpl(with: [1, 2, 3, 2])
         
         // When
-        let listWithoutDuplicates = tasks.removeDuplicates(in: list)
+        tasks.removeDuplicatesInPlace(in: list)
         
         // Then
-        XCTAssertEqual(listWithoutDuplicates, ListImpl(with: [1, 2, 3]))
+        XCTAssertEqual(list, ListImpl(with: [1, 2, 3]))
     }
     
     func testListWithAllDuplicates() {
@@ -49,10 +49,44 @@ class Lists21_Tests: XCTestCase {
         let list = ListImpl(with: [1, 1, 1, 1])
         
         // When
-        let listWithoutDuplicates = tasks.removeDuplicates(in: list)
+        tasks.removeDuplicatesInPlace(in: list)
         
         // Then
-        XCTAssertEqual(listWithoutDuplicates, ListImpl(with: [1]))
+        XCTAssertEqual(list, ListImpl(with: [1]))
     }
+    
+    func testWithoutBufferListWithoutDuplicates() {
+        // Given
+        let list = ListImpl(with: [1, 2, 3])
+        
+        // When
+        tasks.removeDuplicatesInPlaceWithoutBuffer(in: list)
+        
+        // Then
+        XCTAssertEqual(list, ListImpl(with: [1, 2, 3]))
+    }
+    
+    func testWithoutBufferListWithDuplicates() {
+        // Given
+        let list = ListImpl(with: [1, 2, 3, 2])
+        
+        // When
+        tasks.removeDuplicatesInPlaceWithoutBuffer(in: list)
+        
+        // Then
+        XCTAssertEqual(list, ListImpl(with: [1, 2, 3]))
+    }
+    
+    func tesWithoutBuffertListWithAllDuplicates() {
+        // Given
+        let list = ListImpl(with: [1, 1, 1, 1])
+        
+        // When
+        tasks.removeDuplicatesInPlaceWithoutBuffer(in: list)
+        
+        // Then
+        XCTAssertEqual(list, ListImpl(with: [1]))
+    }
+
  }
 

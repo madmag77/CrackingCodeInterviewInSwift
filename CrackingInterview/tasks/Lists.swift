@@ -13,13 +13,13 @@ class ListsTasks {
     
 }
 
-/* 2.1 Remove duplicates from unsorted linked list
- * Complexity: O(n).
- */
 extension ListsTasks {
-    func removeDuplicates(in list: ListImpl<Int>) -> ListImpl<Int> {
+    /* 2.1 Remove duplicates from unsorted linked list
+     * Complexity: O(n).
+     */
+    func removeDuplicatesInPlace(in list: ListImpl<Int>) {
         guard let root = list.root else {
-            return list
+            return
         }
         
         var listSet: Set<Int> = [root.data]
@@ -27,7 +27,7 @@ extension ListsTasks {
         while currentNode.link != nil {
             if let childNode = currentNode.link {
                 if listSet.contains(childNode.data) {
-                    let _ = list.removeNode(previousNode: currentNode)
+                    let _ = list.removeNodeAfter(node: currentNode)
                 } else {
                     currentNode = childNode
                 }
@@ -36,26 +36,27 @@ extension ListsTasks {
                 fatalError()
             }
         }
-        return list
     }
     
-    func removeDuplicatesWithoutBuffer(in list: OneLinkListNode<Int>) -> OneLinkListNode<Int> {
-        var listSet: Set<Int> = [list.data]
-        var currentNode: OneLinkListNode<Int> = list
-        while currentNode.link != nil {
-            if let childNode = currentNode.link {
-                if listSet.contains(childNode.data) {
-                    let _ = OneLinkList.deleteNode(node: childNode, in: list)
-                } else {
-                    currentNode = childNode
-                }
-                listSet.insert(childNode.data)
-            } else {
-                fatalError()
-            }
+    /* 2.1 Remove duplicates from unsorted linked list without buffer
+     * Complexity: O(n*n).
+     */
+    func removeDuplicatesInPlaceWithoutBuffer(in list: ListImpl<Int>) {
+        guard let root = list.root else {
+            return
         }
-        return list
+        
+        var currentNode: OneLinkListNode<Int>? = root
+        while currentNode?.link != nil {
+            var previousInnerCurrentNode: OneLinkListNode<Int>? = currentNode
+            while previousInnerCurrentNode?.link != nil {
+                if previousInnerCurrentNode?.link?.data == currentNode?.data {
+                    list.removeNodeAfter(node: previousInnerCurrentNode!)
+                } else {
+                    previousInnerCurrentNode = previousInnerCurrentNode?.link
+                }
+            }
+            currentNode = currentNode?.link
+        }
     }
-    
-
 }
