@@ -140,3 +140,37 @@ extension ListsTasks {
     }
 }
 
+/* 2.5 Sum two numbers represented by lists
+ * e.g. 256 is represented as 6->5->2
+ * Complexity: O(n).
+ */
+extension ListsTasks {
+    func sumNumbersAsLists(_ list1: ListImpl<Int>, _ list2: ListImpl<Int>) -> ListImpl<Int> {
+        let result = ListImpl<Int>()
+        var currentNode1 = list1.root
+        var currentNode2 = list2.root
+        var digitTransfer = false
+        while currentNode1 != nil || currentNode2 != nil {
+            let digitsSum = (currentNode1?.data ?? 0) + (currentNode2?.data ?? 0) + (digitTransfer ? 1 : 0)
+            digitTransfer = digitsSum > 9
+            
+            result.addNodeAfterTail(OneLinkListNode(digitsSum % 10))
+            
+            currentNode1 = currentNode1?.link ?? nil
+            currentNode2 = currentNode2?.link ?? nil
+        }
+        
+        if digitTransfer {
+            result.addNodeAfterTail(OneLinkListNode(1))
+        }
+        
+        return result
+    }
+    
+    // Same task but numbers are represented in reverse order 256 represented as 2->5->6
+    func sumNumbersAsReverseLists(_ list1: ListImpl<Int>, _ list2: ListImpl<Int>) -> ListImpl<Int> {
+        let result = ListImpl<Int>()
+        // TODO - need implementation
+        return result
+    }
+}
