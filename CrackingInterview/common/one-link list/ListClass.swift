@@ -140,8 +140,10 @@ class ListImpl<T: Equatable & Comparable>: List {
         if node.link === root {
             root = node.link?.link
         }
-
-        node.link = node.link?.link
+        
+        let nodeToRemove = node.link
+        node.link = nodeToRemove?.link
+        nodeToRemove?.link = nil
     }
 
     func count() -> Int {
