@@ -60,3 +60,83 @@ extension ListsTasks {
         }
     }
 }
+
+/* 2.2 Looking for k-th element from the end
+ * Complexity: O(n).
+ */
+extension ListsTasks {
+    func searchNodeFromEnd(in list: ListImpl<Int>, indexFromEnd: Int) -> OneLinkListNode<Int>? {
+        guard let root = list.root else {
+            return nil
+        }
+        
+        var foundNode: OneLinkListNode<Int>? = nil
+        var counter: Int = 0
+        
+        list.iterateThroughList { (node) -> Bool in
+            if counter == indexFromEnd {
+                foundNode = root
+            } else if counter > indexFromEnd {
+                foundNode = foundNode?.link
+            }
+            counter += 1
+            return false
+        }
+        
+        return foundNode
+    }
+}
+
+/* 2.3 Remove node (non root nor tail) from the list
+ * Complexity: O(n).
+ */
+extension ListsTasks {
+    func removeNodeFromList(in list: ListImpl<Int>, nodeToRemove: OneLinkListNode<Int>) {
+        guard let root = list.root else {
+            return
+        }
+        
+        var previousNode: OneLinkListNode<Int> = root
+        
+        list.iterateThroughList { (node) -> Bool in
+            if node === nodeToRemove {
+                list.removeNodeAfter(node: previousNode)
+                return true
+            } else {
+                previousNode = node
+            }
+            return false
+        }
+    }
+}
+
+/* 2.4 Reorder list around definite element x
+ * (elements < x should be in left part, elements > x in right part)
+ * Complexity: O(n).
+ */
+extension ListsTasks {
+    func reoderList(_ list: ListImpl<Int>, relativeTo splitNode: OneLinkListNode<Int>) {
+        guard let root = list.root else {
+            return
+        }
+        
+        let tempRoot: OneLinkListNode<Int> = OneLinkListNode(0)
+        tempRoot.link = root
+        var previousNode: OneLinkListNode<Int> = tempRoot
+        
+        while previousNode.link != nil,
+            let currentNode = previousNode.link {
+                
+            if currentNode.data >= splitNode.data {
+                let tempNode = currentNode
+                list.removeNodeAfter(node: previousNode)
+                list.addNodeAfterTail(tempNode)
+            }
+            
+            if let newPreviousNode = previousNode.link {
+                previousNode = newPreviousNode
+            }
+        }
+    }
+}
+
