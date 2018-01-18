@@ -168,9 +168,100 @@ extension ListsTasks {
     }
     
     // Same task but numbers are represented in reverse order 256 represented as 2->5->6
+    // Complexity: O(n * n), in best case (without overflows): O(n)
     func sumNumbersAsReverseLists(_ list1: ListImpl<Int>, _ list2: ListImpl<Int>) -> ListImpl<Int> {
-        let result = ListImpl<Int>()
-        // TODO - need implementation
+        var result = ListImpl<Int>()
+        var lastOverflow: OneLinkListNode<Int>? = nil
+
+        (result, lastOverflow) = sumRegardlessOverflows(list1,
+                                                        list2,
+                                                        list1ExcessList2: differenceLengthBetween(list1, list2))
+        
+        // iterate throw list with sums while there is no any overflows in it
+        while lastOverflow != nil {
+             lastOverflow = arrangeOverflows(listWithSums: result, lastOverflow: lastOverflow)
+        }
+        
         return result
+    }
+    
+    private func differenceLengthBetween(_ list1: ListImpl<Int>, _ list2: ListImpl<Int>) -> Int {
+        var currentNode1 = list1.root
+        var currentNode2 = list2.root
+        var len1ToLen2Difference: Int = 0
+        
+        // calculate difference between lists lengths
+        while currentNode1 != nil || currentNode2 != nil {
+            if currentNode1 != nil && currentNode2 == nil {
+                len1ToLen2Difference += 1
+            } else if currentNode1 == nil && currentNode2 != nil {
+                len1ToLen2Difference -= 1
+            }
+            
+            currentNode1 = currentNode1?.link ?? nil
+            currentNode2 = currentNode2?.link ?? nil
+        }
+        
+        return len1ToLen2Difference
+    }
+    
+    // sum data in two lists according to right digi ranking regardless of overflows,
+    // return list with sums and last node with overflow
+    private func sumRegardlessOverflows(_ list1: ListImpl<Int>, _ list2: ListImpl<Int>, list1ExcessList2: Int) -> (result: ListImpl<Int>, lastOverflow: OneLinkListNode<Int>?) {
+        
+        let result = ListImpl<Int>()
+        var currentNode1 = list1.root
+        var currentNode2 = list2.root
+        var len1ToLen2Difference = list1ExcessList2
+        
+        var lastOverflow: OneLinkListNode<Int>? = nil
+        while currentNode1 != nil || currentNode2 != nil {
+            var digitsSum = 0
+            if len1ToLen2Difference > 0 {
+                len1ToLen2Difference -= 1
+                digitsSum = currentNode1?.data ?? 0
+                currentNode1 = currentNode1?.link ?? nil
+            } else if len1ToLen2Difference < 0 {
+                len1ToLen2Difference += 1
+                digitsSum = currentNode2?.data ?? 0
+                currentNode2 = currentNode2?.link ?? nil
+            } else {
+                digitsSum = (currentNode1?.data ?? 0) + (currentNode2?.data ?? 0)
+                currentNode1 = currentNode1?.link ?? nil
+                currentNode2 = currentNode2?.link ?? nil
+            }
+            
+            result.addNodeAfterTail(OneLinkListNode(digitsSum))
+            
+            if digitsSum > 9 {
+                lastOverflow = result.tail
+            }
+        }
+        
+        return (result, lastOverflow)
+    }
+
+    // transer overflows to previous digit and return last node with overflow
+    private func arrangeOverflows(listWithSums: ListImpl<Int>, lastOverflow:  OneLinkListNode<Int>?) -> OneLinkListNode<Int>? {
+        var currentNode = listWithSums.root
+        var previousCurrentNode: OneLinkListNode<Int>? = nil
+        var newOverflow: OneLinkListNode<Int>? = nil
+        while currentNode !== lastOverflow?.link {
+            if (currentNode?.data ?? 0) > 9 {
+                if previousCurrentNode == nil {
+                    listWithSums.addNodeBeforeRoot(OneLinkListNode(1))
+                } else {
+                    previousCurrentNode!.data += 1
+                    if previousCurrentNode!.data > 9 {
+                        newOverflow = previousCurrentNode
+                    }
+                }
+                currentNode?.data %= 10
+            }
+            previousCurrentNode = currentNode
+            currentNode = currentNode?.link
+        }
+        
+        return newOverflow
     }
 }
