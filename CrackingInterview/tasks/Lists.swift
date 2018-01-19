@@ -265,3 +265,64 @@ extension ListsTasks {
         return newOverflow
     }
 }
+
+/* 2.6 Check if list is palindrom
+ * Complexity: O(n * n).
+ */
+extension ListsTasks {
+    func isPalindrom(_ list: ListImpl<Int>) -> Bool {
+        
+        // Empty list is not a palindrom
+        guard list.root != nil else {
+            return false
+        }
+        
+        // List with one node is palindrom
+        guard list.root?.link != nil else {
+            return true
+        }
+        
+        var result: Bool = false
+        let len: Int = list.count()
+        var counter: Int = 1
+        list.iterateThroughList { (node) -> Bool in
+            // Have to stop on the half of the list
+            if counter > len / 2 {
+                result = true
+                return true
+            }
+            
+            if !isCurrentNodeEqualToMirroredOne(currentNode: node,
+                                                stepsToMirrored: stepsFromCurrentToMirrored(currentIndex: counter,
+                                                                                            listLength: len),
+                                                in: list) {
+                return true
+            }
+            
+            counter += 1
+            return false
+        }
+        return result
+    }
+    
+    private func isCurrentNodeEqualToMirroredOne(currentNode: OneLinkListNode<Int>,
+                                                 stepsToMirrored: Int,
+                                                 in list: ListImpl<Int>) -> Bool {
+        var fromCounter: Int = 0
+        var nodeIsMirrored: Bool = false
+        list.iterateThroughList(from: currentNode, with: { (mirroredNode) -> Bool in
+            if fromCounter == stepsToMirrored {
+                nodeIsMirrored = currentNode.data == mirroredNode.data
+                return true
+            }
+            fromCounter += 1
+            return false
+        })
+        return nodeIsMirrored
+    }
+    
+    private func stepsFromCurrentToMirrored(currentIndex: Int, listLength: Int) -> Int {
+        let indexOfMirroredNode: Int = listLength - currentIndex + 1
+        return indexOfMirroredNode - currentIndex
+    }
+}
