@@ -48,6 +48,32 @@ class ArraysAndStrings15_Tests: XCTestCase {
         XCTAssertTrue(isOneDistance)
     }
     
+    func testLongStringDistanceOneDelete() {
+        // Given
+        let string1 = "abcdefg"
+        let string2 = "abdefg"
+        
+        // When
+        let isOneDistance = tasks.isOneDistance(from: string1,
+                                                to: string2)
+        
+        // Then
+        XCTAssertTrue(isOneDistance)
+    }
+    
+    func testLongStringDistanceOneInsert() {
+        // Given
+        let string1 = "abcdefg"
+        let string2 = "abcdrefg"
+        
+        // When
+        let isOneDistance = tasks.isOneDistance(from: string1,
+                                                to: string2)
+        
+        // Then
+        XCTAssertTrue(isOneDistance)
+    }
+    
     func testDistanceOneAdd() {
         // Given
         let string1 = "abc"
@@ -84,7 +110,7 @@ class ArraysAndStrings15_Tests: XCTestCase {
                                                 to: string2)
         
         // Then
-        XCTAssertFalse(isOneDistance)
+        XCTAssertTrue(isOneDistance)
     }
     
 }

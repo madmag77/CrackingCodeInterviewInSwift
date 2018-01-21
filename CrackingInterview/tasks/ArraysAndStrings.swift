@@ -112,22 +112,58 @@ extension ArraysAndStringsTasks {
     }
 }
 
-/* 1.5 Is distance between strings is 1
+/* 1.5 Is distance between strings is 0 or 1
  * Complexity: O(n). Not taking into account conversion string -> array
  */
 extension ArraysAndStringsTasks {
     func isOneDistance(from string1: String, to string2: String) -> Bool {
-        let minIndex = string1.count > string2.count ? string2.count : string1.count
+        if abs(string1.count - string2.count) > 1 {
+            return false
+        }
+        
         let stringArray1 = getArray(from: string1)
         let stringArray2 = getArray(from: string2)
-        var changes = 0
-        for i in (0..<minIndex) {
-            if stringArray1[i] != stringArray2[i]  {
-                changes += 1
+
+        if stringArray1.count < stringArray2.count {
+            // Insertion
+            if !checkDifferenceInOne(smaller: stringArray1, bigger: stringArray2) {
+                return false
+            }
+        } else if stringArray1.count > stringArray2.count {
+            // Deletion
+            if !checkDifferenceInOne(smaller: stringArray2, bigger: stringArray1) {
+                return false
+            }
+        } else {
+            // Change
+            var changes = 0
+           for i in (0..<stringArray1.count) {
+                if stringArray1[i] != stringArray2[i]  {
+                    changes += 1
+                    if changes > 1 {
+                        return false
+                    }
+                }
             }
         }
-        changes += abs(string1.count - string2.count)
-        return changes == 1
+        
+        return true
+    }
+    
+    private func checkDifferenceInOne(smaller array1: [Character], bigger array2: [Character]) -> Bool {
+        var changes = 0
+        var i = 0
+        while i < array1.count {
+            if array1[i] != array2[i + changes]  {
+                changes += 1
+                if changes > 1 {
+                    return false
+                }
+            } else {
+                i += 1
+            }
+        }
+        return true
     }
     
     func getArray(from string: String) -> [Character] {
