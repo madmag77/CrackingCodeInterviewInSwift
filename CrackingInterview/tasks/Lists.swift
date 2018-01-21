@@ -326,3 +326,125 @@ extension ListsTasks {
         return indexOfMirroredNode - currentIndex
     }
 }
+
+/* 2.7 Find intersection of two lists
+ * Complexity: O(n * m).
+ */
+extension ListsTasks {
+    func firstIntersection(_ list1: ListImpl<Int>, _ list2: ListImpl<Int>) -> OneLinkListNode<Int>? {
+        
+        // If one of the lists is empty they can't intersect
+        guard list1.root != nil || list2.root != nil else {
+            return nil
+        }
+        
+        var intersection: OneLinkListNode<Int>? = nil
+
+        list1.iterateThroughList { (node1) -> Bool in
+            list2.iterateThroughList { (node2) -> Bool in
+                if node1 === node2 {
+                    intersection = node1
+                    return true
+                }
+                return false
+            }
+            return false
+        }
+        
+        return intersection
+    }
+}
+
+/* 2.8 Find first node of cycle in the list
+ * 3 -> 5 -> 1 -> 6 -> 8 -> 1 -> 6 -> 8....
+ * Complexity: O(n).
+ */
+extension ListsTasks {
+    func firstNodeOfCycle(_ list: ListImpl<Int>) -> OneLinkListNode<Int>? {
+        
+        guard list.root != nil else {
+            return nil
+        }
+        
+        // Get one random node from cycle or nil if there is no cycle in the list
+        guard let oneNodeFromCycle = nodeFromCycle(in: list) else {
+            return nil
+        }
+        
+        return firstCycleNode(in: list, nodeFromCycle: oneNodeFromCycle)
+    }
+    
+    private func nodeFromCycle(in list: ListImpl<Int>) -> OneLinkListNode<Int>? {
+        let speedDivider = 2
+        var slowIteratorNode: OneLinkListNode<Int>? = nil
+        var fastCounter = 1
+        var slowCounter = 0
+        var cyclesCounter = 0
+        var foundCycle = false
+        
+        // Introduces two iterates - fast one and slow one that goes slower in `speedDivider` times slower
+        // If they meet each other then there is a cycle in the list
+        // Steps between first and second meet - cycle length
+        list.iterateThroughList { (fastIteratorNode) -> Bool in
+            if slowIteratorNode === fastIteratorNode {
+                foundCycle = true
+                if cyclesCounter == 0 {
+                    fastCounter = 1
+                    slowCounter = 0
+                    cyclesCounter += 1
+                } else {
+                    return true
+                }
+            }
+            
+            if fastCounter % speedDivider == 0 {
+                if slowIteratorNode == nil {
+                    slowIteratorNode = list.root
+                } else {
+                    slowIteratorNode = slowIteratorNode?.link
+                }
+                slowCounter += 1
+            }
+            
+            fastCounter += 1
+            return false
+        }
+        
+        // No cycles in the list
+        if !foundCycle {
+            return nil
+        }
+        
+        // we can calculate cycle length in linear time using this formula
+        // let cycleLength = fastCounter * speedDivider / (speedDivider + 1) - 1
+        // but seems like it can't help us to find first cycle node
+        
+        return slowIteratorNode
+    }
+    
+    private func firstCycleNode(in list: ListImpl<Int>, nodeFromCycle: OneLinkListNode<Int>) -> OneLinkListNode<Int> {
+        var firstCycleNode: OneLinkListNode<Int>? = nil
+        
+        // Iterate throug list and for each node try to find it in cycle
+        // first node from list to be found in cycle is an answer
+        list.iterateThroughList { (node) -> Bool in
+            if node === nodeFromCycle {
+                firstCycleNode = node
+                return true
+            }
+            
+            var tempIteratorNode: OneLinkListNode<Int>? = nodeFromCycle.link
+            while tempIteratorNode !== nodeFromCycle {
+                if tempIteratorNode === node {
+                    firstCycleNode = node
+                    return true
+                }
+                tempIteratorNode = tempIteratorNode?.link
+            }
+            
+            return false
+        }
+
+        return firstCycleNode!
+    }
+}
