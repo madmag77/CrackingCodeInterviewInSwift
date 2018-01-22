@@ -271,7 +271,7 @@ extension ArraysAndStringsTasks {
 }
 
 /* 1.9
- * Complexity:
+ * Complexity: O(n)
  */
 extension ArraysAndStringsTasks {
     func isStringShifted(_ s2: String, shiftedFrom s1: String) -> Bool {

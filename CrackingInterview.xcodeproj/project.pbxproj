@@ -17,6 +17,10 @@
 		EB2339812010AC0A0061EE83 /* Lists26_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2339802010AC0A0061EE83 /* Lists26_Tests.swift */; };
 		EB233983201425950061EE83 /* Lists27_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB233982201425950061EE83 /* Lists27_Tests.swift */; };
 		EB233985201432820061EE83 /* Lists28_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB233984201432820061EE83 /* Lists28_Tests.swift */; };
+		EB2339872014A1C90061EE83 /* StackClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2339862014A1C90061EE83 /* StackClass.swift */; };
+		EB2339892014A4310061EE83 /* StackClassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2339882014A4310061EE83 /* StackClassTests.swift */; };
+		EB23398B2014A6AC0061EE83 /* Stacks.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB23398A2014A6AC0061EE83 /* Stacks.swift */; };
+		EB23398D2015699B0061EE83 /* Stacks35_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB23398C2015699B0061EE83 /* Stacks35_Tests.swift */; };
 		EB2FAF611FD4CCE0006664F4 /* ArraysAndStrings18_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2FAF601FD4CCE0006664F4 /* ArraysAndStrings18_Tests.swift */; };
 		EB2FAF631FD55B91006664F4 /* ArraysAndStrings19_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2FAF621FD55B91006664F4 /* ArraysAndStrings19_Tests.swift */; };
 		EB54D96E2000BDF80022C296 /* ListClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54D96D2000BDF80022C296 /* ListClass.swift */; };
@@ -59,6 +63,10 @@
 		EB2339802010AC0A0061EE83 /* Lists26_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lists26_Tests.swift; sourceTree = "<group>"; };
 		EB233982201425950061EE83 /* Lists27_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lists27_Tests.swift; sourceTree = "<group>"; };
 		EB233984201432820061EE83 /* Lists28_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lists28_Tests.swift; sourceTree = "<group>"; };
+		EB2339862014A1C90061EE83 /* StackClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackClass.swift; sourceTree = "<group>"; };
+		EB2339882014A4310061EE83 /* StackClassTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackClassTests.swift; sourceTree = "<group>"; };
+		EB23398A2014A6AC0061EE83 /* Stacks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stacks.swift; sourceTree = "<group>"; };
+		EB23398C2015699B0061EE83 /* Stacks35_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stacks35_Tests.swift; sourceTree = "<group>"; };
 		EB2FAF601FD4CCE0006664F4 /* ArraysAndStrings18_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArraysAndStrings18_Tests.swift; sourceTree = "<group>"; };
 		EB2FAF621FD55B91006664F4 /* ArraysAndStrings19_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArraysAndStrings19_Tests.swift; sourceTree = "<group>"; };
 		EB54D96D2000BDF80022C296 /* ListClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListClass.swift; sourceTree = "<group>"; };
@@ -161,6 +169,7 @@
 				EB2FAF621FD55B91006664F4 /* ArraysAndStrings19_Tests.swift */,
 				EBE59A2A1FEBC8FE001F2FC1 /* ListTests.swift */,
 				EB54D96F2000C4030022C296 /* ListClassTests.swift */,
+				EB2339882014A4310061EE83 /* StackClassTests.swift */,
 				EBE59A2F1FEFA7CA001F2FC1 /* Lists21_Tests.swift */,
 				EB233978200D7F580061EE83 /* Lists22_Tests.swift */,
 				EB23397A200D82010061EE83 /* Lists23_Tests.swift */,
@@ -169,6 +178,7 @@
 				EB2339802010AC0A0061EE83 /* Lists26_Tests.swift */,
 				EB233982201425950061EE83 /* Lists27_Tests.swift */,
 				EB233984201432820061EE83 /* Lists28_Tests.swift */,
+				EB23398C2015699B0061EE83 /* Stacks35_Tests.swift */,
 				EBBE66EF1FD0461F002A72C4 /* Info.plist */,
 			);
 			path = CrackingInterviewTests;
@@ -179,6 +189,7 @@
 			children = (
 				EBBE67171FD0D286002A72C4 /* ArraysAndStrings.swift */,
 				EB9D56C91FDAA754000A83AD /* Lists.swift */,
+				EB23398A2014A6AC0061EE83 /* Stacks.swift */,
 			);
 			path = tasks;
 			sourceTree = "<group>";
@@ -187,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				EB233971200CB25A0061EE83 /* one-link list */,
+				EB2339862014A1C90061EE83 /* StackClass.swift */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -298,6 +310,8 @@
 				EB233973200CB3310061EE83 /* ListSorting.swift in Sources */,
 				EBBE67181FD0D286002A72C4 /* ArraysAndStrings.swift in Sources */,
 				EBE59A2E1FEE0427001F2FC1 /* List.swift in Sources */,
+				EB2339872014A1C90061EE83 /* StackClass.swift in Sources */,
+				EB23398B2014A6AC0061EE83 /* Stacks.swift in Sources */,
 				EB54D96E2000BDF80022C296 /* ListClass.swift in Sources */,
 				EBBE66DD1FD0461F002A72C4 /* AppDelegate.swift in Sources */,
 				EB9D56CA1FDAA754000A83AD /* Lists.swift in Sources */,
@@ -315,6 +329,7 @@
 				EBBE671A1FD0D333002A72C4 /* ArraysAndStrings16_Tests.swift in Sources */,
 				EB23397B200D82010061EE83 /* Lists23_Tests.swift in Sources */,
 				EB233985201432820061EE83 /* Lists28_Tests.swift in Sources */,
+				EB2339892014A4310061EE83 /* StackClassTests.swift in Sources */,
 				EB23397D200D850D0061EE83 /* Lists24_Tests.swift in Sources */,
 				EB23397F200ED8CC0061EE83 /* Lists25_Tests.swift in Sources */,
 				EB233983201425950061EE83 /* Lists27_Tests.swift in Sources */,
@@ -322,6 +337,7 @@
 				EBE59A301FEFA7CA001F2FC1 /* Lists21_Tests.swift in Sources */,
 				EB9D56C41FDA104C000A83AD /* ArraysAndStrings13_Tests.swift in Sources */,
 				EB9D56C21FDA1043000A83AD /* ArraysAndStrings14_Tests.swift in Sources */,
+				EB23398D2015699B0061EE83 /* Stacks35_Tests.swift in Sources */,
 				EB9D56C61FDA1055000A83AD /* ArraysAndStrings12_Tests.swift in Sources */,
 				EB233979200D7F580061EE83 /* Lists22_Tests.swift in Sources */,
 				EBBE67211FD16677002A72C4 /* ArraysAndStrings17_Tests.swift in Sources */,

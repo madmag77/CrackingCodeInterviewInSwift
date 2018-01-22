@@ -339,7 +339,7 @@ extension ListsTasks {
         }
         
         var intersection: OneLinkListNode<Int>? = nil
-
+        
         list1.iterateThroughList { (node1) -> Bool in
             list2.iterateThroughList { (node2) -> Bool in
                 if node1 === node2 {
@@ -348,6 +348,46 @@ extension ListsTasks {
                 }
                 return false
             }
+            
+            if intersection != nil {
+                return true
+            }
+            
+            return false
+        }
+        
+        return intersection
+    }
+    
+    // If two lists intersects then their tails are the same, so we can find length of both lists
+    // and then iterate synchronously until found same element - intersection
+    // complexity in this case o(n + m)
+    func firstIntersectionOptimized(_ list1: ListImpl<Int>, _ list2: ListImpl<Int>) -> OneLinkListNode<Int>? {
+        
+        // If one of the lists is empty they can't intersect
+        guard list1.root != nil || list2.root != nil else {
+            return nil
+        }
+        
+        var intersection: OneLinkListNode<Int>? = nil
+        let len1 = list1.count()
+        let len2 = list2.count()
+        let lesserList = len1 <= len2 ? list1 : list2
+        let biggerList = len1 > len2 ? list1 : list2
+        var diffCounter = abs(len2 - len1)
+        var currentLesserNode : OneLinkListNode<Int>? = lesserList.root
+        biggerList.iterateThroughList { (node) -> Bool in
+            if diffCounter > 0 {
+                diffCounter -= 1
+                return false
+            }
+            
+            if node === currentLesserNode {
+                intersection = node
+                return true
+            }
+            
+            currentLesserNode = currentLesserNode?.link
             return false
         }
         
@@ -357,7 +397,7 @@ extension ListsTasks {
 
 /* 2.8 Find first node of cycle in the list
  * 3 -> 5 -> 1 -> 6 -> 8 -> 1 -> 6 -> 8....
- * Complexity: O(n).
+ * Complexity: O(n * n).
  */
 extension ListsTasks {
     func firstNodeOfCycle(_ list: ListImpl<Int>) -> OneLinkListNode<Int>? {
