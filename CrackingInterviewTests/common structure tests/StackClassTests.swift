@@ -24,22 +24,25 @@ class StackClassTests: XCTestCase {
     func testAddAndGetFromStack() {
         // Given
         let stack = StackImpl<Int>()
-        let val = 1
-        
+        let val1 = 1
+        let val2 = 1
+
         // When
-        stack.push(val)
+        stack.push(val1)
+        stack.push(val2)
         let valPeek = stack.peek()
 
         // Then
         XCTAssertFalse(stack.isEmpty())
-        XCTAssertEqual(val, valPeek)
+        XCTAssertEqual(val2, valPeek)
 
         // When
+        let _ = stack.pop()
         let valPop = stack.pop()
 
         // Then
         XCTAssertTrue(stack.isEmpty())
-        XCTAssertEqual(val, valPop)
+        XCTAssertEqual(val1, valPop)
     }
     
 }

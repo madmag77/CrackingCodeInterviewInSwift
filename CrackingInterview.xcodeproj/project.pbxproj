@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB0C4A772016C13400707600 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0C4A762016C13400707600 /* Graph.swift */; };
+		EB0C4A792016C45200707600 /* Graphs.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0C4A782016C45200707600 /* Graphs.swift */; };
+		EB0C4A7B2016C53F00707600 /* Graphs41_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0C4A7A2016C53F00707600 /* Graphs41_Tests.swift */; };
+		EB0C4A8220180C9300707600 /* QueueClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0C4A8120180C9300707600 /* QueueClass.swift */; };
+		EB0C4A8520180DB300707600 /* QueueClassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0C4A8420180DB300707600 /* QueueClassTests.swift */; };
 		EB233973200CB3310061EE83 /* ListSorting.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB233972200CB3310061EE83 /* ListSorting.swift */; };
 		EB233975200CB5B30061EE83 /* ListNodeSwapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB233974200CB5B30061EE83 /* ListNodeSwapping.swift */; };
 		EB233977200CB6670061EE83 /* ListIterating.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB233976200CB6670061EE83 /* ListIterating.swift */; };
@@ -53,6 +58,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EB0C4A762016C13400707600 /* Graph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Graph.swift; sourceTree = "<group>"; };
+		EB0C4A782016C45200707600 /* Graphs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Graphs.swift; sourceTree = "<group>"; };
+		EB0C4A7A2016C53F00707600 /* Graphs41_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Graphs41_Tests.swift; sourceTree = "<group>"; };
+		EB0C4A8120180C9300707600 /* QueueClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueueClass.swift; sourceTree = "<group>"; };
+		EB0C4A8420180DB300707600 /* QueueClassTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueueClassTests.swift; sourceTree = "<group>"; };
 		EB233972200CB3310061EE83 /* ListSorting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSorting.swift; sourceTree = "<group>"; };
 		EB233974200CB5B30061EE83 /* ListNodeSwapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNodeSwapping.swift; sourceTree = "<group>"; };
 		EB233976200CB6670061EE83 /* ListIterating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListIterating.swift; sourceTree = "<group>"; };
@@ -111,6 +121,64 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EB0C4A7C2016C6AF00707600 /* common structure tests */ = {
+			isa = PBXGroup;
+			children = (
+				EBE59A2A1FEBC8FE001F2FC1 /* ListTests.swift */,
+				EB54D96F2000C4030022C296 /* ListClassTests.swift */,
+				EB2339882014A4310061EE83 /* StackClassTests.swift */,
+				EB0C4A8420180DB300707600 /* QueueClassTests.swift */,
+			);
+			path = "common structure tests";
+			sourceTree = "<group>";
+		};
+		EB0C4A7D2016C6CF00707600 /* Arrays and strings tests */ = {
+			isa = PBXGroup;
+			children = (
+				EB9D56C71FDA105F000A83AD /* ArraysAndStrings11_Tests.swift */,
+				EB9D56C51FDA1055000A83AD /* ArraysAndStrings12_Tests.swift */,
+				EB9D56C31FDA104C000A83AD /* ArraysAndStrings13_Tests.swift */,
+				EB9D56C11FDA1043000A83AD /* ArraysAndStrings14_Tests.swift */,
+				EB9D56BF1FDA1023000A83AD /* ArraysAndStrings15_Tests.swift */,
+				EBBE67191FD0D333002A72C4 /* ArraysAndStrings16_Tests.swift */,
+				EBBE67201FD16677002A72C4 /* ArraysAndStrings17_Tests.swift */,
+				EB2FAF601FD4CCE0006664F4 /* ArraysAndStrings18_Tests.swift */,
+				EB2FAF621FD55B91006664F4 /* ArraysAndStrings19_Tests.swift */,
+			);
+			path = "Arrays and strings tests";
+			sourceTree = "<group>";
+		};
+		EB0C4A7E2016C6E100707600 /* Lists tests */ = {
+			isa = PBXGroup;
+			children = (
+				EBE59A2F1FEFA7CA001F2FC1 /* Lists21_Tests.swift */,
+				EB233978200D7F580061EE83 /* Lists22_Tests.swift */,
+				EB23397A200D82010061EE83 /* Lists23_Tests.swift */,
+				EB23397C200D850D0061EE83 /* Lists24_Tests.swift */,
+				EB23397E200ED8CC0061EE83 /* Lists25_Tests.swift */,
+				EB2339802010AC0A0061EE83 /* Lists26_Tests.swift */,
+				EB233982201425950061EE83 /* Lists27_Tests.swift */,
+				EB233984201432820061EE83 /* Lists28_Tests.swift */,
+			);
+			path = "Lists tests";
+			sourceTree = "<group>";
+		};
+		EB0C4A7F2016C6EA00707600 /* Stack tests */ = {
+			isa = PBXGroup;
+			children = (
+				EB23398C2015699B0061EE83 /* Stacks35_Tests.swift */,
+			);
+			path = "Stack tests";
+			sourceTree = "<group>";
+		};
+		EB0C4A802016C6F100707600 /* Graphs tests */ = {
+			isa = PBXGroup;
+			children = (
+				EB0C4A7A2016C53F00707600 /* Graphs41_Tests.swift */,
+			);
+			path = "Graphs tests";
+			sourceTree = "<group>";
+		};
 		EB233971200CB25A0061EE83 /* one-link list */ = {
 			isa = PBXGroup;
 			children = (
@@ -158,27 +226,11 @@
 		EBBE66EC1FD0461F002A72C4 /* CrackingInterviewTests */ = {
 			isa = PBXGroup;
 			children = (
-				EB9D56C71FDA105F000A83AD /* ArraysAndStrings11_Tests.swift */,
-				EB9D56C51FDA1055000A83AD /* ArraysAndStrings12_Tests.swift */,
-				EB9D56C31FDA104C000A83AD /* ArraysAndStrings13_Tests.swift */,
-				EB9D56C11FDA1043000A83AD /* ArraysAndStrings14_Tests.swift */,
-				EB9D56BF1FDA1023000A83AD /* ArraysAndStrings15_Tests.swift */,
-				EBBE67191FD0D333002A72C4 /* ArraysAndStrings16_Tests.swift */,
-				EBBE67201FD16677002A72C4 /* ArraysAndStrings17_Tests.swift */,
-				EB2FAF601FD4CCE0006664F4 /* ArraysAndStrings18_Tests.swift */,
-				EB2FAF621FD55B91006664F4 /* ArraysAndStrings19_Tests.swift */,
-				EBE59A2A1FEBC8FE001F2FC1 /* ListTests.swift */,
-				EB54D96F2000C4030022C296 /* ListClassTests.swift */,
-				EB2339882014A4310061EE83 /* StackClassTests.swift */,
-				EBE59A2F1FEFA7CA001F2FC1 /* Lists21_Tests.swift */,
-				EB233978200D7F580061EE83 /* Lists22_Tests.swift */,
-				EB23397A200D82010061EE83 /* Lists23_Tests.swift */,
-				EB23397C200D850D0061EE83 /* Lists24_Tests.swift */,
-				EB23397E200ED8CC0061EE83 /* Lists25_Tests.swift */,
-				EB2339802010AC0A0061EE83 /* Lists26_Tests.swift */,
-				EB233982201425950061EE83 /* Lists27_Tests.swift */,
-				EB233984201432820061EE83 /* Lists28_Tests.swift */,
-				EB23398C2015699B0061EE83 /* Stacks35_Tests.swift */,
+				EB0C4A7C2016C6AF00707600 /* common structure tests */,
+				EB0C4A7D2016C6CF00707600 /* Arrays and strings tests */,
+				EB0C4A7E2016C6E100707600 /* Lists tests */,
+				EB0C4A7F2016C6EA00707600 /* Stack tests */,
+				EB0C4A802016C6F100707600 /* Graphs tests */,
 				EBBE66EF1FD0461F002A72C4 /* Info.plist */,
 			);
 			path = CrackingInterviewTests;
@@ -190,6 +242,7 @@
 				EBBE67171FD0D286002A72C4 /* ArraysAndStrings.swift */,
 				EB9D56C91FDAA754000A83AD /* Lists.swift */,
 				EB23398A2014A6AC0061EE83 /* Stacks.swift */,
+				EB0C4A782016C45200707600 /* Graphs.swift */,
 			);
 			path = tasks;
 			sourceTree = "<group>";
@@ -199,6 +252,8 @@
 			children = (
 				EB233971200CB25A0061EE83 /* one-link list */,
 				EB2339862014A1C90061EE83 /* StackClass.swift */,
+				EB0C4A8120180C9300707600 /* QueueClass.swift */,
+				EB0C4A762016C13400707600 /* Graph.swift */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -305,13 +360,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB0C4A792016C45200707600 /* Graphs.swift in Sources */,
 				EB233975200CB5B30061EE83 /* ListNodeSwapping.swift in Sources */,
 				EB233977200CB6670061EE83 /* ListIterating.swift in Sources */,
 				EB233973200CB3310061EE83 /* ListSorting.swift in Sources */,
 				EBBE67181FD0D286002A72C4 /* ArraysAndStrings.swift in Sources */,
+				EB0C4A8220180C9300707600 /* QueueClass.swift in Sources */,
 				EBE59A2E1FEE0427001F2FC1 /* List.swift in Sources */,
 				EB2339872014A1C90061EE83 /* StackClass.swift in Sources */,
 				EB23398B2014A6AC0061EE83 /* Stacks.swift in Sources */,
+				EB0C4A772016C13400707600 /* Graph.swift in Sources */,
 				EB54D96E2000BDF80022C296 /* ListClass.swift in Sources */,
 				EBBE66DD1FD0461F002A72C4 /* AppDelegate.swift in Sources */,
 				EB9D56CA1FDAA754000A83AD /* Lists.swift in Sources */,
@@ -329,10 +387,12 @@
 				EBBE671A1FD0D333002A72C4 /* ArraysAndStrings16_Tests.swift in Sources */,
 				EB23397B200D82010061EE83 /* Lists23_Tests.swift in Sources */,
 				EB233985201432820061EE83 /* Lists28_Tests.swift in Sources */,
+				EB0C4A7B2016C53F00707600 /* Graphs41_Tests.swift in Sources */,
 				EB2339892014A4310061EE83 /* StackClassTests.swift in Sources */,
 				EB23397D200D850D0061EE83 /* Lists24_Tests.swift in Sources */,
 				EB23397F200ED8CC0061EE83 /* Lists25_Tests.swift in Sources */,
 				EB233983201425950061EE83 /* Lists27_Tests.swift in Sources */,
+				EB0C4A8520180DB300707600 /* QueueClassTests.swift in Sources */,
 				EBE59A2B1FEBC8FE001F2FC1 /* ListTests.swift in Sources */,
 				EBE59A301FEFA7CA001F2FC1 /* Lists21_Tests.swift in Sources */,
 				EB9D56C41FDA104C000A83AD /* ArraysAndStrings13_Tests.swift in Sources */,

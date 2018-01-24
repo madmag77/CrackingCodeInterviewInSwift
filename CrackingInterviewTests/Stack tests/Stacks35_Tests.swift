@@ -10,11 +10,11 @@ import XCTest
 @testable import CrackingInterview
 
 class Stacks35_Tests: XCTestCase {
-    var tasks: ListsTasks!
+    var tasks: StackTasks!
     
     override func setUp() {
         super.setUp()
-        tasks = ListsTasks()
+        tasks = StackTasks()
     }
     
     override func tearDown() {

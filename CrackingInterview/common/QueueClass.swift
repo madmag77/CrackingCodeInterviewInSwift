@@ -1,5 +1,5 @@
 //
-//  StackClass.swift
+//  QueueClass.swift
 //  CrackingInterview
 //
 //  Created by Artem Goncharov on 21/01/2018.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol Stack: class {
+protocol Queue: class {
     associatedtype T: Comparable
     func push(_ value: T)
     func pop() -> T
@@ -16,17 +16,17 @@ protocol Stack: class {
     func isEmpty() -> Bool
 }
 
-class StackImpl<T: Comparable> : Stack {
+class QueueImpl<T: Comparable> : Queue {
     private let list: ListImpl<T>
     init() {
         list = ListImpl<T>()
     }
     
     func push(_ value: T) {
-        list.addNodeBeforeRoot(OneLinkListNode(value))
+        list.addNodeAfterTail(OneLinkListNode(value))
     }
     
-    func pop() -> T {
+    func pop() ->T {
         guard let root = list.root else {
             fatalError()
         }

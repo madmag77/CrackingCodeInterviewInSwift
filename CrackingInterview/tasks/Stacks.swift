@@ -1,5 +1,5 @@
 //
-//  Lists.swift
+//  Stack.swift
 //  CrackingInterview
 //
 //  Created by Artem Goncharov on 08/12/2017.
@@ -13,7 +13,7 @@ class StackTasks {
     
 }
 
-extension ListsTasks {
+extension StackTasks {
     /* 3.5 Stack sorting
      * Complexity: O(n*n).
      */
