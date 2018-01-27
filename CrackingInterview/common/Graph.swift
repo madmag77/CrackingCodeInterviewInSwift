@@ -18,9 +18,10 @@ class GraphNode<T: Comparable>: Comparable {
     }
     
     let data: T
-    var children: Array<GraphNode<T>>?
+    var children: Array<GraphNode<T>> = Array<GraphNode<T>>()
+    var visited: Bool = false
     
-    init(data: T) {
+    init(_ data: T) {
         self.data = data
     }
 }
@@ -33,6 +34,7 @@ protocol Graph {
 
 class GraphImpl<T: Comparable>: Graph {
     var nodes: Array<GraphNode<T>> = Array<GraphNode<T>>()
+    
 }
 
 

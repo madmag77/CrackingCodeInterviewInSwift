@@ -22,11 +22,37 @@ class Graphs41_Tests: XCTestCase {
         super.tearDown()
     }
 
-    func _testUnsorted() {
+    func testRouteExists() {
         // Given
         let graph = graphForTesting()
         let node1 = graph.nodes[0]
-        let node2 = graph.nodes[3]
+        let node2 = graph.nodes[0].children[1].children[0]
+        
+        // When
+        let isRouteExisted = tasks.isRouteExistedBetween(node1, node2, in: graph)
+        
+        // Then
+        XCTAssertTrue(isRouteExisted)
+    }
+    
+    func testRouteNonExists() {
+        // Given
+        let graph = graphForTesting()
+        let node1 = graph.nodes[0]
+        let node2 = graph.nodes[1]
+        
+        // When
+        let isRouteExisted = tasks.isRouteExistedBetween(node1, node2, in: graph)
+        
+        // Then
+        XCTAssertFalse(isRouteExisted)
+    }
+    
+    func testRouteExistsSameNode() {
+        // Given
+        let graph = graphForTesting()
+        let node1 = graph.nodes[0]
+        let node2 = graph.nodes[0]
         
         // When
         let isRouteExisted = tasks.isRouteExistedBetween(node1, node2, in: graph)
@@ -40,7 +66,20 @@ class Graphs41_Tests: XCTestCase {
     // 3->4<-5
     private func graphForTesting() -> GraphImpl<Int> {
         let graph = GraphImpl<Int>()
-        graph.nodes.append(GraphNode<Int>(1))
+        let node1 = GraphNode<Int>(1)
+        
+        node1.children.append(GraphNode<Int>(2))
+        graph.nodes.append(node1)
+        
+        let node3 = GraphNode<Int>(3)
+        let node4 = GraphNode<Int>(4)
+        node3.children.append(node4)
+        node1.children.append(node3)
+        
+        let node5 = GraphNode<Int>(5)
+        node5.children.append(node4)
+        graph.nodes.append(node5)
+        
         return graph
     }
 }
