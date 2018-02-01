@@ -28,6 +28,24 @@ class BinaryTreeTests: XCTestCase {
         return tree
     }()
     
+    lazy var testTreeWithEqualNodes: BinaryTreeImpl<Int> = {
+        let tree = BinaryTreeImpl<Int>()
+        
+        tree.root = BinaryNode(15)
+        tree.root?.setLeft(6)
+        tree.root?.setRight(15)
+        tree.root?.left?.setLeft(2)
+        tree.root?.left?.setRight(7)
+        tree.root?.left?.left?.setLeft(2)
+        tree.root?.left?.left?.setRight(4)
+        tree.root?.left?.right?.setRight(13)
+        tree.root?.left?.right?.right?.setLeft(9)
+        tree.root?.right?.setLeft(14)
+        tree.root?.right?.setRight(20)
+        
+        return tree
+    }()
+
     func testEmptyBinaryTree() {
         // Given
         let tree = BinaryTreeImpl<Int>()
@@ -129,6 +147,44 @@ class BinaryTreeTests: XCTestCase {
         
         // Then
         XCTAssertEqual(testTree.root?.left?.right?.right?.left?.right?.data, 10)
+    }
+    
+    func testRemoveLastNodeFromBinaryTree() {
+        // Given
+        let tree = testTree
+        let nodeToRemove = tree.root?.left?.left?.left // 2
+        
+        // When
+        tree.deleteNode(nodeToRemove!)
+        
+        // Then
+        XCTAssertNil(tree.root?.left?.left?.left)
+    }
+    
+    func testRemoveMiddleNodeFromBinaryTree() {
+        // Given
+        let tree = testTree
+        let nodeToRemove = tree.root?.left?.left // 3
+        
+        // When
+        tree.deleteNode(nodeToRemove!)
+        
+        // Then
+        XCTAssertEqual(tree.root?.left?.left?.data, 2)
+        XCTAssertEqual(tree.root?.left?.left?.right?.data, 4)
+    }
+    
+    func testRemoveRootNodeFromBinaryTree() {
+        // Given
+        let tree = testTree
+        let nodeToRemove = tree.root // 15
+        
+        // When
+        tree.deleteNode(nodeToRemove!)
+        
+        // Then
+        XCTAssertEqual(tree.root?.data, 13)
+        XCTAssertEqual(tree.root?.left?.right?.right?.data, 9)
     }
     
 }

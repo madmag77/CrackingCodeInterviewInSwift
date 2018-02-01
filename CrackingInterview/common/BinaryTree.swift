@@ -139,6 +139,62 @@ extension BinaryTreeImpl: BinaryTree {
     }
     
     func deleteNode(_ node: BinaryNode<T>) {
+        // Easiest option
+        if node.left == nil && node.right == nil {
+            if node.parent?.left === node {
+                node.parent?.left = nil
+                node.parent = nil
+            } else {
+                node.parent?.right = nil
+                node.parent = nil
+            }
+            
+            if node === root {
+                root = nil
+            }
+            
+            return
+        }
         
+        var currentNode: BinaryNode<T>
+        if let left = node.left {
+            currentNode = left
+            while currentNode.right != nil {
+                currentNode = currentNode.right!
+            }
+            
+            if currentNode.parent !== node {
+                currentNode.parent?.right = currentNode.left
+            }
+            
+            copy(from: node, to: currentNode)
+        } else {
+            currentNode = node.right!
+            while currentNode.left != nil {
+                currentNode = currentNode.left!
+            }
+
+            if currentNode.parent !== node {
+                currentNode.parent?.left = currentNode.right
+            }
+
+            copy(from: node, to: currentNode)
+        }
+    }
+    
+    private func copy(from nodeFrom: BinaryNode<T>, to nodeTo: BinaryNode<T>) {
+        nodeTo.left = nodeFrom.left !== nodeTo ? nodeFrom.left : nil
+        nodeTo.right = nodeFrom.right !== nodeTo ? nodeFrom.right : nil
+        nodeTo.parent = nodeFrom.parent
+        if nodeFrom.parent?.left === nodeFrom {
+            nodeFrom.parent?.left = nodeTo
+        } else {
+            nodeFrom.parent?.right = nodeTo
+        }
+        
+        if nodeFrom === root {
+            root = nodeTo
+        }
+
     }
 }
