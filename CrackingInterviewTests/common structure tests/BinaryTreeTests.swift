@@ -143,10 +143,34 @@ class BinaryTreeTests: XCTestCase {
         let valueToInsert = 10
         
         // When
-        tree.insertValue(valueToInsert)
+        let _ = tree.insertValue(valueToInsert)
         
         // Then
-        XCTAssertEqual(testTree.root?.left?.right?.right?.left?.right?.data, 10)
+        XCTAssertEqual(tree.root?.left?.right?.right?.left?.right?.data, 10)
+    }
+    
+    // Test is useless as assert test, just to check average complexity of insertions
+    func testAddRandomValuesToEmptyBinaryTree() {
+        // Given
+        var tree = BinaryTreeImpl<Int>()
+        
+        // When
+        var accum = 0.0
+        for _ in (0..<10) {
+            tree = BinaryTreeImpl<Int>()
+            for i in (0..<105) {
+                if i >= 95 {
+                    accum += Double(tree.insertValue(Int(arc4random_uniform(100))))
+                } else {
+                    let _ = tree.insertValue(Int(arc4random_uniform(100)))
+                }
+            }
+        }
+        
+        print ("time to insert random value: \(accum/100.0), ideal: \(log2(100.0))");
+        
+        // Then
+        XCTAssertNotNil(tree.root)
     }
     
     func testRemoveLastNodeFromBinaryTree() {

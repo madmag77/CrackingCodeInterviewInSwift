@@ -38,7 +38,7 @@ protocol BinaryTree: class {
     func beforeNode(_ node: BinaryNode<T>) -> T?
     func afterNode(_ node: BinaryNode<T>) -> T?
     
-    func insertValue(_ value: T)
+    func insertValue(_ value: T) -> Int
     func deleteNode(_ node: BinaryNode<T>)
 }
 
@@ -113,13 +113,18 @@ extension BinaryTreeImpl: BinaryTree {
         return nil
     }
     
-    func insertValue(_ value: T) {
+    // Return steps count in order to investigate complexity
+    func insertValue(_ value: T) -> Int {
         guard let root = root else {
-            fatalError()
+            self.root = BinaryNode(value)
+            return 1
         }
+        
+        var stepsCnt = 0
         
         var currentNode: BinaryNode<T> = root
         while true {
+            stepsCnt += 1
             if value > currentNode.data {
                 if currentNode.right != nil {
                     currentNode = currentNode.right!
@@ -136,6 +141,7 @@ extension BinaryTreeImpl: BinaryTree {
                 }
             }
         }
+        return stepsCnt
     }
     
     func deleteNode(_ node: BinaryNode<T>) {
