@@ -1,5 +1,5 @@
 //
-//  BinaryTreeTests.swift
+//  SearchBinaryTreeTests.swift
 //  CrackingInterviewTests
 //
 //  Created by Artem Goncharov on 21/12/2017.
@@ -9,9 +9,9 @@
 import XCTest
 @testable import CrackingInterview
 
-class BinaryTreeTests: XCTestCase {
-    lazy var testTree: BinaryTreeImpl<Int> = {
-        let tree = BinaryTreeImpl<Int>()
+class SearchBinaryTreeTests: XCTestCase {
+    lazy var testTree: SearchBinaryTreeImpl<Int> = {
+        let tree = SearchBinaryTreeImpl<Int>()
         
         tree.root = BinaryNode(15)
         tree.root?.setLeft(6)
@@ -28,8 +28,8 @@ class BinaryTreeTests: XCTestCase {
         return tree
     }()
     
-    lazy var testTreeWithEqualNodes: BinaryTreeImpl<Int> = {
-        let tree = BinaryTreeImpl<Int>()
+    lazy var testTreeWithEqualNodes: SearchBinaryTreeImpl<Int> = {
+        let tree = SearchBinaryTreeImpl<Int>()
         
         tree.root = BinaryNode(15)
         tree.root?.setLeft(6)
@@ -48,7 +48,7 @@ class BinaryTreeTests: XCTestCase {
 
     func testEmptyBinaryTree() {
         // Given
-        let tree = BinaryTreeImpl<Int>()
+        let tree = SearchBinaryTreeImpl<Int>()
         
         // When
         
@@ -152,12 +152,12 @@ class BinaryTreeTests: XCTestCase {
     // Test is useless as assert test, just to check average complexity of insertions
     func testAddRandomValuesToEmptyBinaryTree() {
         // Given
-        var tree = BinaryTreeImpl<Int>()
+        var tree = SearchBinaryTreeImpl<Int>()
         
         // When
         var accum = 0.0
         for _ in (0..<10) {
-            tree = BinaryTreeImpl<Int>()
+            tree = SearchBinaryTreeImpl<Int>()
             for i in (0..<105) {
                 if i >= 95 {
                     accum += Double(tree.insertValue(Int(arc4random_uniform(100))))

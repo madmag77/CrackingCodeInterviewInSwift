@@ -22,7 +22,7 @@ class Graphs42_Tests: XCTestCase {
         super.tearDown()
     }
 
-    func testSmallTree() {
+    func _testSmallTree() {
         // Given
         let array = [1, 4, 6, 89]
         
@@ -36,7 +36,7 @@ class Graphs42_Tests: XCTestCase {
         XCTAssertEqual(binaryTree.nodes[0].children[0].children[1].data, 6)
     }
     
-    func testMediumTree() {
+    func _testMediumTree() {
         // Given
         let array = [2, 4, 6, 8, 10, 20]
         

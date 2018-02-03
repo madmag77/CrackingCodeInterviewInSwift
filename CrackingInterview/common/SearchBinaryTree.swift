@@ -1,5 +1,5 @@
 //
-//  BinaryTree.swift
+//  SearchBinaryTree.swift
 //  CrackingInterview
 //
 //  Created by Artem Goncharov on 30/01/2018.
@@ -31,7 +31,7 @@ class BinaryNode<T: Comparable> {
     }
 }
 
-protocol BinaryTree: class {
+protocol SearchBinaryTree: class {
     associatedtype T: Comparable
     func max() -> T
     func min() -> T
@@ -42,11 +42,11 @@ protocol BinaryTree: class {
     func deleteNode(_ node: BinaryNode<T>)
 }
 
-class BinaryTreeImpl<T: Comparable> {
+class SearchBinaryTreeImpl<T: Comparable> {
     var root: BinaryNode<T>?
 }
 
-extension BinaryTreeImpl: BinaryTree {
+extension SearchBinaryTreeImpl: SearchBinaryTree {
     func max() -> T {
         guard let root = root else {
             fatalError()
