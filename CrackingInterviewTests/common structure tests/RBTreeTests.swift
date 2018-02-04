@@ -170,6 +170,18 @@ class RBTreeTests: XCTestCase {
         XCTAssertEqual(blackHeight, 2)
     }
     
+    func testBlackHeightOfBlackNode() {
+        // Given
+        let tree = testProperRBTree
+        let node = tree.root?.left?.left?.left?.right
+        
+        // When
+        let blackHeight = tree.blackHeightOfNode(node!)
+        
+        // Then
+        XCTAssertEqual(blackHeight, 2)
+    }
+    
     func testRedNodeHasBlackChildren() {
         // Given
         let tree = testProperRBTree

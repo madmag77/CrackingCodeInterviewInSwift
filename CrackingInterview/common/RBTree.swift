@@ -87,9 +87,13 @@ class RBTreeImpl<T: Comparable>: SearchBinaryTreeImpl<T> {
     public func isProperRedBlack() -> Bool {
         guard let root = root else { return false }
         
-        // First condition root is Black
+        // First condition is implied because we have enum with only two cases
+        
+        // Second condition root is Black
         if root.color == .Red { return false }
         
+        // Third condition is implied because real leaf is just abstraction here
+
         var properRBTree = true
         var stop = false
         var blackHeight = 0
@@ -97,13 +101,13 @@ class RBTreeImpl<T: Comparable>: SearchBinaryTreeImpl<T> {
         dfs(from: root) { node, isLeaf in
             guard !stop else { return stop }
             
-            // Second condition check
+            // Fourth condition check
             if !isLeaf && !checkIfRedNodeHasBlackChildren(node) {
                 stop = true
                 properRBTree = false
             } else if isLeaf {
                 
-                // Third condition - same black height of all leafs
+                // Fifth condition - same black height of all leafs
                 let height = blackHeightOfNode(node)
                 if blackHeight == 0 {
                     blackHeight = height
@@ -140,6 +144,7 @@ class RBTreeImpl<T: Comparable>: SearchBinaryTreeImpl<T> {
     private func dfs(from node: BinaryNode<T>,
                      doWithEveryNode: (BinaryNode<T>, Bool) -> (Bool)) {
         
+        // Leaf here it's node that hasn't got any children
         if doWithEveryNode(node, node.left == nil && node.right == nil) {
             return
         }
