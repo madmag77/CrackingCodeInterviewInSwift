@@ -84,6 +84,7 @@ class RBTreeImpl<T: Comparable>: SearchBinaryTreeImpl<T> {
         }
     }
     
+    // Check if tree is really a Red - Black tree
     public func isProperRedBlack() -> Bool {
         guard let root = root else { return false }
         
@@ -98,6 +99,7 @@ class RBTreeImpl<T: Comparable>: SearchBinaryTreeImpl<T> {
         var stop = false
         var blackHeight = 0
         
+        // Find all leaves using dfs and check black height of each of them
         dfs(from: root) { node, isLeaf in
             guard !stop else { return stop }
             
@@ -127,6 +129,7 @@ class RBTreeImpl<T: Comparable>: SearchBinaryTreeImpl<T> {
         return node.color == .Red ? node.left?.color != .Red && node.right?.color != .Red : true
     }
     
+    // Iterate through parents to the root and sum black nodes
     public func blackHeightOfNode(_ node: BinaryNode<T>) -> Int {
         var height = 0
         var currentNode: BinaryNode<T>? = node
@@ -140,7 +143,7 @@ class RBTreeImpl<T: Comparable>: SearchBinaryTreeImpl<T> {
         return height
     }
     
-    // In closures we pass current node and flag that node is Leaf and wait back for Stop signal
+    // Depth first search - In closure we pass current node and flag that node is Leaf and wait back for Stop signal
     private func dfs(from node: BinaryNode<T>,
                      doWithEveryNode: (BinaryNode<T>, Bool) -> (Bool)) {
         
