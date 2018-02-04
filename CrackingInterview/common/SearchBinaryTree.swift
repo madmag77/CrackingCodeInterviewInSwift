@@ -8,6 +8,11 @@
 
 import Foundation
 
+enum NodeColor {
+    case Black
+    case Red
+}
+
 class BinaryNode<T: Comparable> {
     let data: T
     
@@ -16,7 +21,8 @@ class BinaryNode<T: Comparable> {
     weak var parent: BinaryNode<T>?
     
     var visited: Bool = false
-    
+    var color: NodeColor = .Black
+
     init(_ data: T, parent: BinaryNode<T>? = nil) {
         self.data = data
         self.parent = parent
@@ -42,11 +48,9 @@ protocol SearchBinaryTree: class {
     func deleteNode(_ node: BinaryNode<T>)
 }
 
-class SearchBinaryTreeImpl<T: Comparable> {
+class SearchBinaryTreeImpl<T: Comparable>: SearchBinaryTree {
     var root: BinaryNode<T>?
-}
 
-extension SearchBinaryTreeImpl: SearchBinaryTree {
     func max() -> T {
         guard let root = root else {
             fatalError()

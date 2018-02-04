@@ -15,6 +15,8 @@
 		EB0C4A87201AB41F00707600 /* Graphs42_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0C4A86201AB41F00707600 /* Graphs42_Tests.swift */; };
 		EB0C4A89201FF9A500707600 /* SearchBinaryTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0C4A88201FF9A500707600 /* SearchBinaryTree.swift */; };
 		EB0C4A8B201FFBF800707600 /* SearchBinaryTreeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0C4A8A201FFBF800707600 /* SearchBinaryTreeTests.swift */; };
+		EB12F0AE2026EB6C0056ACFC /* RBTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB12F0AD2026EB6C0056ACFC /* RBTree.swift */; };
+		EB12F0B02026F9180056ACFC /* RBTreeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB12F0AF2026F9180056ACFC /* RBTreeTests.swift */; };
 		EB233973200CB3310061EE83 /* ListSorting.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB233972200CB3310061EE83 /* ListSorting.swift */; };
 		EB233975200CB5B30061EE83 /* ListNodeSwapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB233974200CB5B30061EE83 /* ListNodeSwapping.swift */; };
 		EB233977200CB6670061EE83 /* ListIterating.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB233976200CB6670061EE83 /* ListIterating.swift */; };
@@ -69,6 +71,8 @@
 		EB0C4A86201AB41F00707600 /* Graphs42_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Graphs42_Tests.swift; sourceTree = "<group>"; };
 		EB0C4A88201FF9A500707600 /* SearchBinaryTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBinaryTree.swift; sourceTree = "<group>"; };
 		EB0C4A8A201FFBF800707600 /* SearchBinaryTreeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBinaryTreeTests.swift; sourceTree = "<group>"; };
+		EB12F0AD2026EB6C0056ACFC /* RBTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RBTree.swift; sourceTree = "<group>"; };
+		EB12F0AF2026F9180056ACFC /* RBTreeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RBTreeTests.swift; sourceTree = "<group>"; };
 		EB233972200CB3310061EE83 /* ListSorting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSorting.swift; sourceTree = "<group>"; };
 		EB233974200CB5B30061EE83 /* ListNodeSwapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNodeSwapping.swift; sourceTree = "<group>"; };
 		EB233976200CB6670061EE83 /* ListIterating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListIterating.swift; sourceTree = "<group>"; };
@@ -135,6 +139,7 @@
 				EB2339882014A4310061EE83 /* StackClassTests.swift */,
 				EB0C4A8420180DB300707600 /* QueueClassTests.swift */,
 				EB0C4A8A201FFBF800707600 /* SearchBinaryTreeTests.swift */,
+				EB12F0AF2026F9180056ACFC /* RBTreeTests.swift */,
 			);
 			path = "common structure tests";
 			sourceTree = "<group>";
@@ -263,6 +268,7 @@
 				EB0C4A8120180C9300707600 /* QueueClass.swift */,
 				EB0C4A762016C13400707600 /* Graph.swift */,
 				EB0C4A88201FF9A500707600 /* SearchBinaryTree.swift */,
+				EB12F0AD2026EB6C0056ACFC /* RBTree.swift */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -379,6 +385,7 @@
 				EB2339872014A1C90061EE83 /* StackClass.swift in Sources */,
 				EB0C4A89201FF9A500707600 /* SearchBinaryTree.swift in Sources */,
 				EB23398B2014A6AC0061EE83 /* Stacks.swift in Sources */,
+				EB12F0AE2026EB6C0056ACFC /* RBTree.swift in Sources */,
 				EB0C4A772016C13400707600 /* Graph.swift in Sources */,
 				EB54D96E2000BDF80022C296 /* ListClass.swift in Sources */,
 				EBBE66DD1FD0461F002A72C4 /* AppDelegate.swift in Sources */,
@@ -397,6 +404,7 @@
 				EB2FAF611FD4CCE0006664F4 /* ArraysAndStrings18_Tests.swift in Sources */,
 				EBBE671A1FD0D333002A72C4 /* ArraysAndStrings16_Tests.swift in Sources */,
 				EB23397B200D82010061EE83 /* Lists23_Tests.swift in Sources */,
+				EB12F0B02026F9180056ACFC /* RBTreeTests.swift in Sources */,
 				EB233985201432820061EE83 /* Lists28_Tests.swift in Sources */,
 				EB0C4A7B2016C53F00707600 /* Graphs41_Tests.swift in Sources */,
 				EB2339892014A4310061EE83 /* StackClassTests.swift in Sources */,
