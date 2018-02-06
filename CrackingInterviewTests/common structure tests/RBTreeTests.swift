@@ -239,4 +239,37 @@ class RBTreeTests: XCTestCase {
         // Then
         XCTAssertFalse(properRBTree)
     }
+    
+    func testRotateLeftRBTree() {
+        // Given
+        let tree = testProperRBTree
+        let nodeToRotate =  tree.root?.right?.left
+        
+        // When
+        tree.rotateLeft(node: nodeToRotate!)
+        
+        // Then
+        XCTAssertEqual(tree.root?.right?.left?.data, 38)
+        XCTAssertEqual(tree.root?.right?.left?.left?.data, 30)
+        XCTAssertEqual(tree.root?.right?.left?.right?.data, 39)
+        XCTAssertEqual(tree.root?.right?.left?.left?.left?.data, 28)
+        XCTAssertEqual(tree.root?.right?.left?.left?.right?.data, 35)
+    }
+    
+    func testRotateRightRBTree() {
+        // Given
+        let tree = testProperRBTree
+        let nodeToRotate = tree.root?.right?.left
+        
+        // When
+        tree.rotateLeft(node: nodeToRotate!)
+        tree.rotateRight(node: (tree.root?.right?.left)!)
+
+        // Then
+        XCTAssertEqual(tree.root?.right?.left?.data, testProperRBTree.root?.right?.left?.data)
+        XCTAssertEqual(tree.root?.right?.left?.left?.data, testProperRBTree.root?.right?.left?.left?.data)
+        XCTAssertEqual(tree.root?.right?.left?.right?.data, testProperRBTree.root?.right?.left?.right?.data)
+        XCTAssertEqual(tree.root?.right?.left?.left?.left?.data, testProperRBTree.root?.right?.left?.left?.left?.data)
+        XCTAssertEqual(tree.root?.right?.left?.left?.right?.data, testProperRBTree.root?.right?.left?.left?.right?.data)
+    }
 }

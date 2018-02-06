@@ -17,6 +17,7 @@ class RBTreeImpl<T: Comparable>: SearchBinaryTreeImpl<T> {
         }
         
         var stepsCnt = 0
+        var newNode: BinaryNode<T>?
         
         var currentNode: BinaryNode<T> = root
         while true {
@@ -26,6 +27,7 @@ class RBTreeImpl<T: Comparable>: SearchBinaryTreeImpl<T> {
                     currentNode = currentNode.right!
                 } else {
                     currentNode.setRight(value)
+                    newNode = currentNode.right
                     break
                 }
             } else {
@@ -33,11 +35,21 @@ class RBTreeImpl<T: Comparable>: SearchBinaryTreeImpl<T> {
                     currentNode = currentNode.left!
                 } else {
                     currentNode.setLeft(value)
+                    newNode = currentNode.left
                     break
                 }
             }
         }
+        
+        newNode?.color = .Red
+        
+        fixTreeStartFrom(newNode!)
+        
         return stepsCnt
+    }
+    
+    private func fixTreeStartFrom(_ node: BinaryNode<T>) {
+        
     }
     
     override func deleteNode(_ node: BinaryNode<T>) {
@@ -160,6 +172,48 @@ class RBTreeImpl<T: Comparable>: SearchBinaryTreeImpl<T> {
         if let right = node.right {
             dfs(from: right,
                 doWithEveryNode: doWithEveryNode)
+        }
+    }
+    
+    public func rotateLeft(node: BinaryNode<T>) {
+        guard let right = node.right else {
+            fatalError()
+        }
+        
+        node.right = right.left
+        right.left = node
+        right.parent = node.parent
+        node.parent = right
+        
+        if (node === root) {
+            root = right
+        } else {
+            if right.parent?.left === node {
+                right.parent?.left = right
+            } else {
+                right.parent?.right = right
+            }
+        }
+    }
+    
+    public func rotateRight(node: BinaryNode<T>) {
+        guard let left = node.left else {
+            fatalError()
+        }
+        
+        node.left = left.right
+        left.right = node
+        left.parent = node.parent
+        node.parent = left
+        
+        if (node === root) {
+            root = left
+        } else {
+            if left.parent?.right === node {
+                left.parent?.right = left
+            } else {
+                left.parent?.left = left
+            }
         }
     }
     
