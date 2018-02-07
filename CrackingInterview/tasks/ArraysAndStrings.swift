@@ -307,7 +307,7 @@ extension ArraysAndStringsTasks {
             return (noneIndicator, noneIndicator, noneIndicator)
         }
         
-        var absoluteSum: Int = 0
+        var absoluteSum: Int = 0 // If we put here -INT32_MAX then we can catch the biggest number in array of all negtives
         var absoluteStartIndex: Int = noneIndicator
         var absoluteEndIndex: Int = 0
     
@@ -317,16 +317,16 @@ extension ArraysAndStringsTasks {
         var currentIndex = 0
         
         for number in array {
-            if number + tempSum >= 0 {
+            if number + tempSum > number {
                 tempSum += number
                 tempEndIndex = currentIndex
                 if tempStartIndex == noneIndicator {
                     tempStartIndex = currentIndex
                 }
             } else {
-                tempSum = 0
-                tempStartIndex = noneIndicator
-                tempEndIndex = 0
+                tempSum = number
+                tempStartIndex = currentIndex
+                tempEndIndex = currentIndex
             }
             
             if tempSum > absoluteSum {
