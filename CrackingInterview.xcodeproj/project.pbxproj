@@ -18,6 +18,8 @@
 		EB12F0AE2026EB6C0056ACFC /* RBTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB12F0AD2026EB6C0056ACFC /* RBTree.swift */; };
 		EB12F0B02026F9180056ACFC /* RBTreeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB12F0AF2026F9180056ACFC /* RBTreeTests.swift */; };
 		EB12F0B2202869C10056ACFC /* GraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB12F0B1202869C10056ACFC /* GraphTests.swift */; };
+		EB12F0B42029BBEC0056ACFC /* ArraysAndStringsOthers_MaxSum_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB12F0B32029BBEC0056ACFC /* ArraysAndStringsOthers_MaxSum_Tests.swift */; };
+		EB12F0B6202A88860056ACFC /* ArraysAndStringsOthers_MergeSort_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB12F0B5202A88860056ACFC /* ArraysAndStringsOthers_MergeSort_Tests.swift */; };
 		EB233973200CB3310061EE83 /* ListSorting.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB233972200CB3310061EE83 /* ListSorting.swift */; };
 		EB233975200CB5B30061EE83 /* ListNodeSwapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB233974200CB5B30061EE83 /* ListNodeSwapping.swift */; };
 		EB233977200CB6670061EE83 /* ListIterating.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB233976200CB6670061EE83 /* ListIterating.swift */; };
@@ -75,6 +77,8 @@
 		EB12F0AD2026EB6C0056ACFC /* RBTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RBTree.swift; sourceTree = "<group>"; };
 		EB12F0AF2026F9180056ACFC /* RBTreeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RBTreeTests.swift; sourceTree = "<group>"; };
 		EB12F0B1202869C10056ACFC /* GraphTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphTests.swift; sourceTree = "<group>"; };
+		EB12F0B32029BBEC0056ACFC /* ArraysAndStringsOthers_MaxSum_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArraysAndStringsOthers_MaxSum_Tests.swift; sourceTree = "<group>"; };
+		EB12F0B5202A88860056ACFC /* ArraysAndStringsOthers_MergeSort_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArraysAndStringsOthers_MergeSort_Tests.swift; sourceTree = "<group>"; };
 		EB233972200CB3310061EE83 /* ListSorting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSorting.swift; sourceTree = "<group>"; };
 		EB233974200CB5B30061EE83 /* ListNodeSwapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNodeSwapping.swift; sourceTree = "<group>"; };
 		EB233976200CB6670061EE83 /* ListIterating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListIterating.swift; sourceTree = "<group>"; };
@@ -159,6 +163,8 @@
 				EBBE67201FD16677002A72C4 /* ArraysAndStrings17_Tests.swift */,
 				EB2FAF601FD4CCE0006664F4 /* ArraysAndStrings18_Tests.swift */,
 				EB2FAF621FD55B91006664F4 /* ArraysAndStrings19_Tests.swift */,
+				EB12F0B32029BBEC0056ACFC /* ArraysAndStringsOthers_MaxSum_Tests.swift */,
+				EB12F0B5202A88860056ACFC /* ArraysAndStringsOthers_MergeSort_Tests.swift */,
 			);
 			path = "Arrays and strings tests";
 			sourceTree = "<group>";
@@ -406,12 +412,14 @@
 				EB2FAF631FD55B91006664F4 /* ArraysAndStrings19_Tests.swift in Sources */,
 				EB2FAF611FD4CCE0006664F4 /* ArraysAndStrings18_Tests.swift in Sources */,
 				EBBE671A1FD0D333002A72C4 /* ArraysAndStrings16_Tests.swift in Sources */,
+				EB12F0B6202A88860056ACFC /* ArraysAndStringsOthers_MergeSort_Tests.swift in Sources */,
 				EB23397B200D82010061EE83 /* Lists23_Tests.swift in Sources */,
 				EB12F0B02026F9180056ACFC /* RBTreeTests.swift in Sources */,
 				EB233985201432820061EE83 /* Lists28_Tests.swift in Sources */,
 				EB0C4A7B2016C53F00707600 /* Graphs41_Tests.swift in Sources */,
 				EB2339892014A4310061EE83 /* StackClassTests.swift in Sources */,
 				EB23397D200D850D0061EE83 /* Lists24_Tests.swift in Sources */,
+				EB12F0B42029BBEC0056ACFC /* ArraysAndStringsOthers_MaxSum_Tests.swift in Sources */,
 				EB23397F200ED8CC0061EE83 /* Lists25_Tests.swift in Sources */,
 				EB233983201425950061EE83 /* Lists27_Tests.swift in Sources */,
 				EB0C4A8520180DB300707600 /* QueueClassTests.swift in Sources */,

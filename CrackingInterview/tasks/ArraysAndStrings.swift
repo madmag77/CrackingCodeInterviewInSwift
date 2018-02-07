@@ -293,3 +293,88 @@ extension ArraysAndStringsTasks {
         return string.range(of: substring) != nil
     }
 }
+
+/* Other: Search for sequence with maximum positive sum
+ * Complexity: O(n)
+ * returns: sum, first index, last index
+ */
+extension ArraysAndStringsTasks {
+    func sequenceWithMaximumSum(in array: Array<Int>) -> (Int, Int, Int) {
+
+        let noneIndicator = -1
+        
+        guard array.count > 0 else {
+            return (noneIndicator, noneIndicator, noneIndicator)
+        }
+        
+        var absoluteSum: Int = 0
+        var absoluteStartIndex: Int = noneIndicator
+        var absoluteEndIndex: Int = 0
+    
+        var tempSum: Int = 0
+        var tempStartIndex: Int = noneIndicator
+        var tempEndIndex: Int = 0
+        var currentIndex = 0
+        
+        for number in array {
+            if number + tempSum >= 0 {
+                tempSum += number
+                tempEndIndex = currentIndex
+                if tempStartIndex == noneIndicator {
+                    tempStartIndex = currentIndex
+                }
+            } else {
+                tempSum = 0
+                tempStartIndex = noneIndicator
+                tempEndIndex = 0
+            }
+            
+            if tempSum > absoluteSum {
+                absoluteSum = tempSum
+                absoluteStartIndex = tempStartIndex
+                absoluteEndIndex = tempEndIndex
+            }
+            
+            currentIndex += 1
+        }
+        
+        return (absoluteSum, absoluteStartIndex, absoluteEndIndex )
+    }
+}
+
+/* Other: MergeSort
+ * Complexity: O(n*log(n))
+ */
+extension ArraysAndStringsTasks {
+    func mergeSort(_ array: [Int]) -> [Int] {
+        let array1 = Array(array[0 ..< array.count/2])
+        let array2 = Array(array[array.count/2 ..< array.count])
+        
+        return merge(array1.count > 1 ? mergeSort(array1) : array1, array2.count > 1 ? mergeSort(array2) : array2)
+    }
+    
+    private func merge(_ array1: [Int], _ array2: [Int]) -> [Int] {
+        var resArray: [Int] = [Int](repeating: 0, count: array1.count + array2.count)
+        var arr1Ind = 0
+        var arr2Ind = 0
+        for ind in (0 ..< array1.count + array2.count) {
+            if arr1Ind == array1.count {
+                resArray[ind] = array2[arr2Ind]
+                arr2Ind += 1
+            } else if arr2Ind == array2.count {
+                resArray[ind] = array1[arr1Ind]
+                arr1Ind += 1
+            } else {
+                if array1[arr1Ind] < array2[arr2Ind] {
+                    resArray[ind] = array1[arr1Ind]
+                    arr1Ind += 1
+                } else {
+                    resArray[ind] = array2[arr2Ind]
+                    arr2Ind += 1
+                }
+            }
+        }
+        return resArray;
+    }
+}
+
