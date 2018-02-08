@@ -378,3 +378,133 @@ extension ArraysAndStringsTasks {
     }
 }
 
+/* Other: HeapSort
+ * Complexity: O(n*log(n))
+ */
+extension ArraysAndStringsTasks {
+    func heapSort(_ array: [Int]) -> [Int] {
+        var heap = makeHeapFromArray(array)
+        
+        var index = heap.count - 1
+        var currentElement = 0
+        while index > 0 {
+            currentElement = heap[index]
+            heap[index] = heap[0]
+            heap[0] = currentElement
+            heapify(from: 0, in: &heap, limitSize: index)
+            index -= 1
+        }
+        
+        return heap
+    }
+    
+    private func makeHeapFromArray(_ array: [Int]) -> [Int] {
+        var heap = array
+        // Start from the middle, because right half of array - leavs
+        var index = array.count / 2
+        while index >= 0 {
+            heapify(from: index, in: &heap, limitSize: array.count)
+            index -= 1
+        }
+        return heap
+    }
+    
+    private func heapify(from elementWithIndex: Int, in array: inout [Int], limitSize: Int) {
+        var indexOfMax = elementWithIndex
+        let leftElementTuple = left(of: elementWithIndex, in: array, limitSize: limitSize)
+        if let leftChildValue = leftElementTuple.value {
+            if leftChildValue > array[indexOfMax] {
+                indexOfMax = leftElementTuple.index
+            }
+        }
+        
+        let rightElementTuple = right(of: elementWithIndex, in: array, limitSize: limitSize)
+        if let rightChildValue = rightElementTuple.value {
+            if rightChildValue > array[indexOfMax] {
+                indexOfMax = rightElementTuple.index
+            }
+        }
+        
+        if indexOfMax != elementWithIndex {
+            let temp = array[elementWithIndex]
+            array[elementWithIndex] = array[indexOfMax]
+            array[indexOfMax] = temp
+            heapify(from: indexOfMax, in: &array, limitSize: limitSize)
+        }
+    }
+
+    // return value and index of left child
+    private func left(of parent: Int, in array: [Int], limitSize: Int) -> (value: Int?, index: Int) {
+        let leftIndex = parent * 2
+        if leftIndex < min(limitSize, array.count) {
+            return (array[leftIndex], leftIndex)
+        } else {
+            return (nil, leftIndex)
+        }
+    }
+    
+    // return value and index of right child
+    private func right(of parent: Int, in array: [Int], limitSize: Int) -> (value: Int?, index: Int) {
+        let rightIndex = parent * 2 + 1
+        if rightIndex < min(limitSize, array.count) {
+            return (array[rightIndex], rightIndex)
+        } else {
+            return (nil, rightIndex)
+        }
+    }
+}
+
+/* Other: QuickSort
+ * Complexity: O(n*log(n))
+ */
+extension ArraysAndStringsTasks {
+    func quickSort(_ array: [Int]) -> [Int] {
+        guard array.count > 1 else {
+            return array
+        }
+        
+        var resArray = array
+        
+        partitioning(&resArray, startIndex: 0, lastIndex: array.count - 1)
+        
+        return resArray
+    }
+    
+    private func partitioning(_ array: inout [Int], startIndex: Int, lastIndex: Int) {
+        guard startIndex < array.count, lastIndex < array.count, lastIndex > 0 else {
+            fatalError()
+        }
+        var pivotIndex = lastIndex
+        var index = pivotIndex - 1
+        let pivotValue = array[pivotIndex]
+        while index >= startIndex {
+            if array[index] > pivotValue {
+                if pivotIndex - 1 > index {
+                    swapElements(in: &array, fromIndex: pivotIndex - 1, toIndex: index)
+                }
+                swapElements(in: &array, fromIndex: pivotIndex, toIndex: pivotIndex - 1)
+                pivotIndex -= 1
+            }
+            index -= 1
+        }
+        
+        if pivotIndex < lastIndex {
+            partitioning(&array, startIndex: pivotIndex, lastIndex: lastIndex)
+        }
+        
+        if startIndex < pivotIndex - 1 {
+            partitioning(&array, startIndex: startIndex, lastIndex: pivotIndex - 1)
+        }
+    }
+    
+    private func swapElements(in array: inout [Int], fromIndex: Int, toIndex: Int) {
+        guard fromIndex < array.count, toIndex < array.count else {
+            fatalError()
+        }
+        let tempValue = array[fromIndex]
+        array[fromIndex] = array[toIndex]
+        array[toIndex] = tempValue
+    }
+}
+
+
