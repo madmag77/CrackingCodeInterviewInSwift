@@ -507,4 +507,139 @@ extension ArraysAndStringsTasks {
     }
 }
 
+/* Other: BucketSort
+ * Complexity: O(n*log(n))
+ */
+extension ArraysAndStringsTasks {
+    func bucketSort(_ array: [Int], bucketsCount: Int) -> [Int] {
+        guard array.count > 1 else {
+            return array
+        }
+        var resArray = [Int]()
+        var buckets: [[Int]] = [[Int]](repeating: [], count: bucketsCount)
+        
+        distributeArrayToBuckets(array, buckets: &buckets)
+        var bucketIndex = 0
+        while bucketIndex < buckets.count {
+            var bucket = buckets[bucketIndex]
+            if bucket.count > 1 {
+                insertionSort(&bucket)
+            }
+            addElementsFromBucketToArray(bucket: &bucket, array: &resArray)
+            bucketIndex += 1
+        }
+        
+        return resArray
+    }
+    
+    private func distributeArrayToBuckets(_ array: [Int], buckets: inout [[Int]]) {
+        var min = array[0]
+        var max = array[0]
+        for element in array {
+            if element < min {
+                min = element
+            }
+            if element > max {
+                max = element
+            }
+        }
+        
+        let bucketSize: Int = Int(ceil(Double(max - min) / Double(buckets.count)))
+        for element in array {
+            buckets[element / bucketSize].append(element)
+        }
+    }
+    
+    func insertionSort(_ array: inout [Int]) {
+        var currentIndex = 1
+        var previousIndex = 0
+        while currentIndex < array.count {
+            previousIndex = currentIndex - 1
+            while previousIndex >= 0 && array[previousIndex + 1] < array[previousIndex] {
+                swap(in: &array, previousIndex + 1, previousIndex)
+                previousIndex -= 1
+            }
+            
+            currentIndex += 1
+        }
+    }
+    
+    private func swap(in array: inout [Int], _ fromIndex: Int, _ toIndex: Int) {
+        guard fromIndex < array.count, toIndex < array.count else {
+            fatalError()
+        }
+        let tempValue = array[fromIndex]
+        array[fromIndex] = array[toIndex]
+        array[toIndex] = tempValue
+    }
+    
+    private func addElementsFromBucketToArray(bucket: inout [Int], array: inout [Int]) {
+        for element in bucket {
+            array.append(element)
+        }
+    }
+}
+
+/* Other: RadixSort
+ * Complexity: O(n*log(n))
+ */
+extension ArraysAndStringsTasks {
+    func radixSort(_ array: [Int]) -> [Int] {
+        guard array.count > 0 else {
+            return array
+        }
+        
+        var tempArray: [Int] = array
+        
+        let maxRadix = getMaxRadix(array)
+        
+        for radix in (1 ... maxRadix) {
+            let buckets = distributeArrayToBuckets(&tempArray, radix: radix)
+            tempArray = uniteBuckets(buckets)
+        }
+        
+        return tempArray
+    }
+    
+    private func getMaxRadix(_ array: [Int]) -> Int {
+        var max = array[0]
+        for element in array {
+            if element > max {
+                max = element
+            }
+        }
+        return radixOf(max, radixValue: 10, radixIndex: 1)
+    }
+    
+    private func radixOf(_ value: Int, radixValue: Int, radixIndex: Int) -> Int {
+        if value > radixValue - 1 {
+            return radixOf(value, radixValue: radixValue * 10, radixIndex: radixIndex + 1)
+        }
+        
+        return radixIndex
+    }
+    
+    private func distributeArrayToBuckets(_ array: inout [Int], radix: Int) -> [[Int]] {
+        var buckets = [[Int]](repeating: [], count: 10)
+        for element in array {
+            buckets[getBucketNum(element, forRadix: radix)].append(element)
+        }
+        return buckets
+    }
+    
+    private func getBucketNum(_ value: Int, forRadix radix: Int) -> Int {
+        let radixDegree: Int = Int(truncating: pow(10.0, radix - 1) as NSDecimalNumber)
+        return (value % (radixDegree * 10)) / radixDegree
+    }
+    
+    private func uniteBuckets(_ buckets: [[Int]]) -> [Int] {
+        var tempArray = [Int]()
+        for bucket in buckets {
+            for element in bucket {
+                tempArray.append(element)
+            }
+        }
+        return tempArray
+    }
+}
 
