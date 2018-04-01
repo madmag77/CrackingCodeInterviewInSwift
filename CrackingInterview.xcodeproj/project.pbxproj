@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB02BEAD2070A8710072FF20 /* Caches.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB02BEAC2070A8710072FF20 /* Caches.swift */; };
+		EB02BEAF2070B6310072FF20 /* CacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB02BEAE2070B6310072FF20 /* CacheTests.swift */; };
 		EB0C4A772016C13400707600 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0C4A762016C13400707600 /* Graph.swift */; };
 		EB0C4A792016C45200707600 /* Graphs.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0C4A782016C45200707600 /* Graphs.swift */; };
 		EB0C4A7B2016C53F00707600 /* Graphs41_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0C4A7A2016C53F00707600 /* Graphs41_Tests.swift */; };
@@ -73,6 +75,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EB02BEAC2070A8710072FF20 /* Caches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Caches.swift; sourceTree = "<group>"; };
+		EB02BEAE2070B6310072FF20 /* CacheTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheTests.swift; sourceTree = "<group>"; };
 		EB0C4A762016C13400707600 /* Graph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Graph.swift; sourceTree = "<group>"; };
 		EB0C4A782016C45200707600 /* Graphs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Graphs.swift; sourceTree = "<group>"; };
 		EB0C4A7A2016C53F00707600 /* Graphs41_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Graphs41_Tests.swift; sourceTree = "<group>"; };
@@ -162,6 +166,7 @@
 				EB12F0AF2026F9180056ACFC /* RBTreeTests.swift */,
 				EB12F0B1202869C10056ACFC /* GraphTests.swift */,
 				EB1C266120561645003AC2A3 /* PrefixTreeTests.swift */,
+				EB02BEAE2070B6310072FF20 /* CacheTests.swift */,
 			);
 			path = "common structure tests";
 			sourceTree = "<group>";
@@ -299,6 +304,7 @@
 				EB12F0B7202B0E080056ACFC /* BinaryHeap.swift */,
 				EB12F0AD2026EB6C0056ACFC /* RBTree.swift */,
 				EB1C265F205606D8003AC2A3 /* PrefixTree.swift */,
+				EB02BEAC2070A8710072FF20 /* Caches.swift */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -411,6 +417,7 @@
 				EB233973200CB3310061EE83 /* ListSorting.swift in Sources */,
 				EBBE67181FD0D286002A72C4 /* ArraysAndStrings.swift in Sources */,
 				EB0C4A8220180C9300707600 /* QueueClass.swift in Sources */,
+				EB02BEAD2070A8710072FF20 /* Caches.swift in Sources */,
 				EBE59A2E1FEE0427001F2FC1 /* List.swift in Sources */,
 				EB12F0B8202B0E080056ACFC /* BinaryHeap.swift in Sources */,
 				EB2339872014A1C90061EE83 /* StackClass.swift in Sources */,
@@ -453,6 +460,7 @@
 				EBE59A2B1FEBC8FE001F2FC1 /* ListTests.swift in Sources */,
 				EB12F0B2202869C10056ACFC /* GraphTests.swift in Sources */,
 				EBE59A301FEFA7CA001F2FC1 /* Lists21_Tests.swift in Sources */,
+				EB02BEAF2070B6310072FF20 /* CacheTests.swift in Sources */,
 				EB9D56C41FDA104C000A83AD /* ArraysAndStrings13_Tests.swift in Sources */,
 				EB12F0BA202B11C20056ACFC /* ArraysAndStringsOthers_HeapSort_Tests.swift in Sources */,
 				EB9D56C21FDA1043000A83AD /* ArraysAndStrings14_Tests.swift in Sources */,
