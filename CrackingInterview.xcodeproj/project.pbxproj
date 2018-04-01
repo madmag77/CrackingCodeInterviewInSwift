@@ -25,6 +25,8 @@
 		EB12F0BC202BD3BE0056ACFC /* ArraysAndStringsOthers_QuickSort_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB12F0BB202BD3BE0056ACFC /* ArraysAndStringsOthers_QuickSort_Tests.swift */; };
 		EB12F0BE202D2C160056ACFC /* ArraysAndStringsOthers_BucketSort_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB12F0BD202D2C160056ACFC /* ArraysAndStringsOthers_BucketSort_Tests.swift */; };
 		EB12F0C0202D34D90056ACFC /* ArraysAndStringsOthers_RadixSort_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB12F0BF202D34D90056ACFC /* ArraysAndStringsOthers_RadixSort_Tests.swift */; };
+		EB1C2660205606D8003AC2A3 /* PrefixTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1C265F205606D8003AC2A3 /* PrefixTree.swift */; };
+		EB1C266220561645003AC2A3 /* PrefixTreeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1C266120561645003AC2A3 /* PrefixTreeTests.swift */; };
 		EB233973200CB3310061EE83 /* ListSorting.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB233972200CB3310061EE83 /* ListSorting.swift */; };
 		EB233975200CB5B30061EE83 /* ListNodeSwapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB233974200CB5B30061EE83 /* ListNodeSwapping.swift */; };
 		EB233977200CB6670061EE83 /* ListIterating.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB233976200CB6670061EE83 /* ListIterating.swift */; };
@@ -89,6 +91,8 @@
 		EB12F0BB202BD3BE0056ACFC /* ArraysAndStringsOthers_QuickSort_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArraysAndStringsOthers_QuickSort_Tests.swift; sourceTree = "<group>"; };
 		EB12F0BD202D2C160056ACFC /* ArraysAndStringsOthers_BucketSort_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArraysAndStringsOthers_BucketSort_Tests.swift; sourceTree = "<group>"; };
 		EB12F0BF202D34D90056ACFC /* ArraysAndStringsOthers_RadixSort_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArraysAndStringsOthers_RadixSort_Tests.swift; sourceTree = "<group>"; };
+		EB1C265F205606D8003AC2A3 /* PrefixTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefixTree.swift; sourceTree = "<group>"; };
+		EB1C266120561645003AC2A3 /* PrefixTreeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrefixTreeTests.swift; sourceTree = "<group>"; };
 		EB233972200CB3310061EE83 /* ListSorting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSorting.swift; sourceTree = "<group>"; };
 		EB233974200CB5B30061EE83 /* ListNodeSwapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNodeSwapping.swift; sourceTree = "<group>"; };
 		EB233976200CB6670061EE83 /* ListIterating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListIterating.swift; sourceTree = "<group>"; };
@@ -157,6 +161,7 @@
 				EB0C4A8A201FFBF800707600 /* SearchBinaryTreeTests.swift */,
 				EB12F0AF2026F9180056ACFC /* RBTreeTests.swift */,
 				EB12F0B1202869C10056ACFC /* GraphTests.swift */,
+				EB1C266120561645003AC2A3 /* PrefixTreeTests.swift */,
 			);
 			path = "common structure tests";
 			sourceTree = "<group>";
@@ -293,6 +298,7 @@
 				EB0C4A88201FF9A500707600 /* SearchBinaryTree.swift */,
 				EB12F0B7202B0E080056ACFC /* BinaryHeap.swift */,
 				EB12F0AD2026EB6C0056ACFC /* RBTree.swift */,
+				EB1C265F205606D8003AC2A3 /* PrefixTree.swift */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -414,6 +420,7 @@
 				EB0C4A772016C13400707600 /* Graph.swift in Sources */,
 				EB54D96E2000BDF80022C296 /* ListClass.swift in Sources */,
 				EBBE66DD1FD0461F002A72C4 /* AppDelegate.swift in Sources */,
+				EB1C2660205606D8003AC2A3 /* PrefixTree.swift in Sources */,
 				EB9D56CA1FDAA754000A83AD /* Lists.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -431,6 +438,7 @@
 				EB12F0C0202D34D90056ACFC /* ArraysAndStringsOthers_RadixSort_Tests.swift in Sources */,
 				EBBE671A1FD0D333002A72C4 /* ArraysAndStrings16_Tests.swift in Sources */,
 				EB12F0B6202A88860056ACFC /* ArraysAndStringsOthers_MergeSort_Tests.swift in Sources */,
+				EB1C266220561645003AC2A3 /* PrefixTreeTests.swift in Sources */,
 				EB23397B200D82010061EE83 /* Lists23_Tests.swift in Sources */,
 				EB12F0B02026F9180056ACFC /* RBTreeTests.swift in Sources */,
 				EB233985201432820061EE83 /* Lists28_Tests.swift in Sources */,

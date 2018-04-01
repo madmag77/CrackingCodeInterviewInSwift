@@ -121,8 +121,8 @@ extension ArraysAndStringsTasks {
             return false
         }
         
-        let stringArray1 = getArray(from: string1)
-        let stringArray2 = getArray(from: string2)
+        let stringArray1 = Array(string1)
+        let stringArray2 = Array(string2)
 
         if stringArray1.count < stringArray2.count {
             // Insertion
@@ -164,14 +164,6 @@ extension ArraysAndStringsTasks {
             }
         }
         return true
-    }
-    
-    func getArray(from string: String) -> [Character] {
-        var res: [Character] = []
-        for symbol in string {
-            res.append(symbol)
-        }
-        return res
     }
 }
 
